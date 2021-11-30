@@ -1,4 +1,4 @@
-.. title:: ThycoticCentrify - Secure Server Handson Training
+.. title:: ThycoticCentrify - Privilige Manager Handson Training
 
 .. toctree::
    :maxdepth: 2
