@@ -2,7 +2,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Module 1
+   :caption: Module 1 - Installation
    :name: _m1
    :hidden:
 
@@ -10,56 +10,63 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 2 - Basic Configuration
+  :caption: Module 2 - Licensing 
   :name: _m2
   :hidden:
 
+  module2/module2   
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 3 - Users, Groups and Roles
+  :caption: Module 3 - Agent installation
   :name: _m3
   :hidden:
 
+  module3/module3
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 4 - Folder and Policies
+  :caption: Module 4 - Active Directory
   :name: _m4
   :hidden:
 
+  module4/module4
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 5 - Secret Templates
+  :caption: Module 5 - Policy Overview
   :name: _m5
   :hidden:
 
+  module5/module5
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 6 - Launchers
+  :caption: Module 6 - Run as Admin Policy
   :name: _m6
   :hidden:
 
+  module6/module6
+
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 7 - Remote Password Changers
+  :caption: Module 7 - Global Policies
   :name: _m7
   :hidden:
 
+  module7/module7
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 8 - Discovery
+  :caption: Module 8 - Targeted Policies
   :name: _m8
   :hidden:
 
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 9 - Auditing and Security
+  :caption: Module 9 - Local account and group Security
   :name: _m9
   :hidden:
 
@@ -82,43 +89,57 @@ Before you start this training course, ensure you have received lab details from
 The Secret Server lab consists of the following machines:
 
 .. list-table::
-   :widths: 15 15 15 55
+   :widths: 15 15 70
    :header-rows: 1
 
    * - Machine Name
      - Internal Lab Name
-     - Internal IP
      - Description
    * - DC1
      - DC1
-     - 172.31.32.10123
      - Domain Controller - contains all AD configuration used within the lab
-   * - SS
-     - SecretServer1
-     - 172.31.40.114
-     - This machine will be used to install and host Secret Server
-   * - WIN
+   * - SSPM
+     - SSPM
+     - This machine will be used to install and host Privilege Manager
+   * - Client
      - Client01
-     - 172.31.46.76
-     - Windows server, used to test a range of Secret Server functionalities during the training course
-   * - CENTOS
-     - 
-     - 172.31.38.35
-     - CentOS machine, used to test a range fo Secret Server functionalities during the training course
+     - Windows server, used to test a range of Privilege Manager functionalities during the training course
 
 
-You will need to initiate a remote desktop connection to the **PUBLIC IP** address of the Win machine. This IP address is dynamic and will change whenever the lab environment is restarted. The Win server machine serves as a jump box from which you can then RDP to the other windows machines by hostname. Lab Exercise 1 explains the process of identifying the IP address of your lab jump box and connecting to it.
+| All lab machines can be accessed easily from the Skytap URL provided by your trainer.
+|
+| The administrative credentials you will need to log into the lab machines:
+|
+| **Windows Domain Admin Account**
+| Username: thylab\adm-training
+| Password: *Password will be provided by trainer*
+|
+| **Windows Domain Standard User Account (for testing policy)**
+| Username: thylab\StandardUser
+| Password: *Password will be provided by trainer*
 
-To log into the Virtual Machines with administrative rights, the below information is providing you the credentials for Windows and Linux.
 
-**Windows Domain Admin Account**
+Introduction
+------------
 
-| Username: **thylab\\adm-training**
-| Password: **Thycotic@2019!**
+Your trainer will provide a slide-based introduction to Privilege Manager, the slide deck used will
+be shared.
 
-**Centos SSH Account**
+Versioning
+**********
 
-| Username: **thycotic**
-| Password: **thycotest12$$**
+.. list-table::
+   :widths: 15 15 15 55
+   :header-rows: 1
+
+   * - Date 
+     - Author
+     - Version
+     - Description
+   * - 1st Dec 2021
+     - WE 
+     - 1.2
+     - Updated to reflect version 11.2.x
+ 
 
 

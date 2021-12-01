@@ -4,5 +4,8 @@
     "restructuredtext.updateOnTextChanged"    : "true",
     "restructuredtext.updateDelay"            : 300,
     "restructuredtext.sphinxBuildPath": null,
-    "restructuredtext.syntaxHighlighting.disabled": true
+    "restructuredtext.syntaxHighlighting.disabled": true,
+    "cSpell.words": [
+        "greylisting"
+    ]
 }

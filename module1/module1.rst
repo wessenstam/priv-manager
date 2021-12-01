@@ -4,7 +4,7 @@
 Installing Privilege Manager
 ----------------------------
 
-Introduction
+Overview
 ------------
 
 This first module will cover:
@@ -15,8 +15,8 @@ This first module will cover:
 4. Lab exercises
 5. Managing the Secret Server encryption key
 
-Secret Server components
-************************
+Privilege Manager components
+****************************
 
 - Front end ASP.NET web Application
 - Back end SQL database
@@ -32,17 +32,19 @@ Pre-Requisites
 
     * - Web Server
       - Database Server
-    * - 2 CPU Cores
-      - 2 CPU Cores
-    * - 4 GB RAM
-      - 4 GB RAM
-    * - 25 GB Disk Space
-      - 50 GB Disk Space
-    * - Windows Server 2008 R2 SP1 or newer
-      - Windows Server 2008 R2 SP1 or newer
+    * - 4 CPU Cores
+      - 4 CPU Cores
+    * - 8 GB RAM
+      - 16 GB RAM
+    * - 40 GB Disk Space
+      - 150 GB Disk Space
+    * - Windows Server 2012 R2 SP1 or newer
+      - Windows Server 2012 R2 SP1 or newer
     * - IIS 7 or newer
       - SQL Server 2012 or newer
     * - .NET 4.5.1. or newer
+      - 
+    * - Powershell 3.0 or newer
       - 
 
 .. note::
@@ -56,203 +58,118 @@ Pre-Requisites
 
     * - Web Server
       - Database Server
-    * - 4 CPU Cores
-      - 4 CPU Cores
-    * - 16 GB RAM
-      - 16 GB RAM
-    * - 25 GB Disk Space
-      - 100+ GB Disk Space
-    * - Windows Server 2008 R2 SP1 or newer
-      - Windows Server 2008 R2 SP1 or newer
+    * - 8 CPU Cores
+      - 8 CPU Cores
+    * - 32 GB RAM
+      - 64 GB RAM
+    * - 40 GB Disk Space
+      - 500 GB Disk Space
+    * - Windows Server 2016 or newer
+      - Windows Server 2016 or newer
     * - IIS 7 or newer
       - SQL Server 2012 or newer
     * - .NET 4.6.1. or newer
       - 
+    * - Powershell 5.0 or newer
+      -
 
-.. warning::
-    For advanced deployments where discovery, session recording or increased numbers of distributed engines are being used, please see feature specific knowledge base guides for detailed requirements.
 
-Ports used by Secret Server
-***************************
-The table below identifies ports and/or port ranges that may be required by Secret Server
-
-.. list-table:: Ports and/or port ranges used
-    :widths: 40 30 30
-    :header-rows: 1
-
-    * - Process
-      - Type of traffic
-      - Port number/range
-    * - Active Directory
-      - LDAPS
-      - 636
-    * -
-      - LDAP
-      - 389
-    * -
-      - Kerberos
-      - 88
-    * -
-      - NTLM
-      - 445 
-    * - Discovery
-      - RPC Dynamic Port Range*
-      - 49152 - 65535
-    * - 
-      - Microsoft DS
-      - 445
-    * - 
-      - Epmap
-      - 135
-    * - 
-      - SSH
-      - 22
-    * - Remote Password Changing
-      - RPC Dynamic Port Range*
-      - 49152 - 65535
-    * - 
-      - SSH
-      - 22
-    * - 
-      - Telnet
-      - 23
-    * - 
-      - MS SQL
-      - 1433
-    * - 
-      - NTLM
-      - 445
-    * - 
-      - LDAP
-      - 389
-    * - 
-      - LDAPS
-      - 636
-    * - 
-      - Sybase
-      - 5000
-    * - 
-      - Oracle
-      - 1521
-    * - 
-      - Kerberos
-      - 88
-    * - Ports Incoming to Webserver
-      - HTTP
-      - 80
-    * - 
-      - HTTPS
-      - 443
-    * - Ports Incoming to Database Server
-      - SQL Connection TCP and UDP
-      - 1433
-    * - Email 
-      - SMTP
-      - 25
-    * - RADIUS Server
-      - RADIUS
-      - 1812
-
-* The RPC Dynamic Port ranges are a range of ports utilized by Microsoft’s Remote Procedure Call (RPC) functionality. This port range varies by operating system. For Windows Server 2008 or greater, this port range is 49152 to 65535 and this entire port range must be open for RPC technology to work. The RPC range is needed to perform Remote Password Changing since Secret Server will need to connect to the computer using DCOM protocol. To see your ipv4 dynamic range on a given machine, type netsh int ipv4 show dynamicport tcp in the commandline. To specify a specific port on your environment that Secret Server will communicate to, you can also `enable WMI ports on Windows client machines <https://thycotic.force.com/support/s/article/Enabling-WMI-ports-on-Windows-client-machines>`_.
-    
-
-Lab Exercise 1 – Connecting to the lab environment
+Lab Exercise 1 - Connecting to the lab environment
 **************************************************
 
 In this exercise will access the Thycotic training lab environment.
 
 #. Navigate to the URL of the training lab environment provided by the Thycotic training team.
-#. Click the power on instances button, the virtual machines within the lab environment will now be powered on. They should be available in one to two minutes
-#. Select and copy in the IP address of the win machine as in the image below:
-   
-   .. figure:: images/000002.png
-   
-.. note::
-    this IP address is dynamic and will change every time the lab environment is stopped and restarted.
-      
-#. From the start menu on your host machine, type remote desktop connection and open the matching application
-#. In the remote desktop connection dialogue, past the IP address and click connect
+#. Enter the password that has been provided by the training team
+#. You will now see all VMs in the lab. Some might be in a suspended state.
 
-   .. figure:: images/000003.png
+   .. figure:: images/lab-pv-001.png
 
-#. When prompted with the windows security credentials dialogue, select More Choices then Use a different account
-#. Use the following credentials to connect, username: **thylab\\adm-training** / password: **Thycotic@2019!**
-#. If prompted with the following certificate warning, select **don’t ask me again** and click **Yes**
+#. Click the power icon above the VMs to power them on, once powered on you can access each VM by clicking into the screen icon
+#. Access the client machine and log in with the provided credentials.
 
-   .. figure:: images/000004.png
+.. note:: 
+  
+    The labs have a default keyboard layout of UK English, you might want to select a different keyboard language in the Skytap toolbar (top of the screen after you have opened the GUI of the VM) and in Windows.
+    
+    .. figure:: images/lab-pv-000.png 
 
-#. A remote desktop connection should now be initialized into the Thycotic training lab environment. From this machine you can now remote on to the other windows machines within the lab environment.
 
-Lab Exercise 2 – Installing Secret Server
-*****************************************
+Lab Exercise 2 - Installing Privilege Manager
+*********************************************
 
-In this exercise will power on and connect to the training lab environment before running through a complete installation of secret server.
+In this exercise will power on and connect to the training lab environment before running through a complete installation of Privilege Manager. 
 
-#. In Lab exercise one we connected to the windows server that acts as a jump host. Initiate a remote desktop connection to **SECRETSERVER1** using the same credentials from lab 1 (thylab\administrator / Thycotic@2019!)
-#. On the desktop of the secretserver1 machine you will see the secret server installer executable:
-
-   .. figure:: images/000005.png
-
+#. Connect to **SSPM** using **adm-training** as the account and the provided password
+#. On the desktop of the **SSPM** machine locate and open the *Installers* Directory on the desktop
+#. Within the directory, navigate to *Privilege Manager > Thycotic (or IBM) > Server*  (the installer is for both Secret Server and Privilege Manager)
 #. Run the setup file, when prompted with a windows User Account Control (UAC) dialogue click **Yes**
-#. The installer can install both Secret Server and Privilege Manager (Thycotic endpoint least privilege solution). In this case we only want to install Secret Server so uncheck the Privilege Manager radio button as in the image below:
+#. The installer can install both Privilege Manager and Secret Server in this lab we only want to install Privilege Manager so uncheck the Secret Server radio button as in the image below:
 
-   .. figure:: images/000006.png
+   .. figure:: images/lab-pv-002.png
+
+   .. note:: 
+
+       The installer, when internet is available, will automatically download and install the latest version of the software.
 
 #. Click **Next**
-#. Read and accept the license agreement
-#. On the SQL Server Database screen we can either install SQL server express or connect to an existing database. In the lab environment SQL Express is already installed so select **Connect to an existing SQL server** then click **Next**
+#. On the SQL Server Database screen, we can either install SQL server express or connect to an existing database. In the lab environment SQL Express is already installed so select **Connect to an existing SQL server** then click **Next**
 
-   .. figure:: images/000007.png
+   .. figure:: images/lab-pv-003.png
 
 #. The installer will now perform a range of checks to ensure pre-requisites are in place. In the lab environment all requirements should be in place, click **Next**
 
-   .. figure:: images/000008.png
+   .. figure:: images/lab-pv-005.png
 
-#. On the next screen we need to configure the database connection. As the SQL server is installed on the same machine, in the Server name or IP field enter: **secretserver1\SQLEXPRESS** in the database name field, enter: **secretsserver**
-#. On the same screen we now need to configure the authentication option that will be used to connect to the database. Although we can use SQL authentication or Windows authentication here, Thycotic recommend using Windows authentication. Select the **Windows Authentication using service account** radio button and click **Next**
+#. On the next screen we need to configure the database connection. As the SQL server is installed on the same machine, in the Server name or IP field enter: **SSPM\SQLEXPRESS** in the database name field, enter: **PrivilegeManager**
+#. On the same screen we now need to configure the authentication option that will be used to connect to the database. Although we can use SQL authentication or Windows authentication here, Thycotic recommend using Windows authentication. Select the Windows Authentication using service account radio button and click **Next**
 
-   .. figure:: images/000009.png
+   .. figure:: images/lab-pv-006.png
 
 #. On the next screen we will be asked to configure the service account that will be used to connect to the SQL database and used to run the IIS application pools. Enter the following credentials:
-
-   - username: **thylab\\svc_secretserver**
-   - password: **Thycotic@2019!**
-
-#. To ensure the credentials are correct, click **Validate Credentials**, if they are you should see the word **success**. If not, check the credentials for any errors. Click Next
-#. On the next screen we need to create our initial Secret Server user. At this point you can create your own user or use the following information to create the initial user:
-   
-   - Username: ss_admin
-   - Display name: ss_admin
-   - Email: ss_admin@thylab.com
-   - Password: Thycotic@2019!
-   - Confirm Password Thycotic@2019!
-
-   .. note:: 
-    If you create your own user account at this point, ensure you remember the username and password. This account is used for the initial administration of Secret Server.
-
-#. Confirm you understand the importance of not loosing these credentials and click **Next**
-
-   .. figure:: images/000010.png
-
-#. On the next screen, options to configure an SMTP mail server are available. This feature will not be used during the training so click Skip Email
-#. Click **Next**
+   | **username**: *thylab\svc_PrivilegeManager* 
+   | **password**: *Provided by the trainer*
+#. To ensure the credentials are correct, click **Validate Credentials**, if they are you should see the word success. If not, check the credentials for any errors. Click **Next**
+#. On the next screen, options to configure an SMTP mail server are available. This feature will not be used during the training so click **Skip Email** 
 #. The next screen provides a review of configured installation options and the option to modify any options if required. Click **Install**
 
-   .. figure:: images/000011.png
+   .. figure:: images/lab-pv-007.png
 
-Managing the Secret Server encryption key
-******************************************
+#. The installation process may take up to 10-15 minutes.
 
-The Secret Server database is encrypted using a master encryption key. Each individual secret stored in the database is then encrypted with an intermediate key. When Secret Server is first installed the master encryption key is available in plain text and stored in the following location:
+   .. figure:: images/lab-pv-009.png
 
-.. code-block:: bash
+   .. note:: 
+       
+       This is a great time to get some coffee or tea as waiting for 10-15 minutes for a process to end isn't great, but a necessity.
 
-    C:\inetpub\wwwroot\SecretServer\encryption.conifg
+#. Once the installation is complete click **Close**
 
-In the next module we will be protecting this encryption config file as part of the security hardening of Secret Server. At this point, Thycotic recommend taking a copy of this master encryption key and storing it in a physical vault for disaster recovery purposes. In a worst case scenario it is possible to recover the Secret Server database and all secrets with a valid database backup and the master encryption key. 
 
-.. danger:: 
-    Thycotic does not keep copies of customer encryption keys
+Lab 3 - Accessing Privilege Manager for the first time
+******************************************************
+
+#. While still on the **SSPM** VM, open Chrome (on your desktop and navigate to the following URL: https://sspm.thylab.local/TMS/PrivilegeManager
+
+   .. note::
+
+     As Chrome is not yet set as the default browser, click the **Set as Default** button and make Chrome your default browser. Close the setting windows and return to Chrome to cary on with the lab.
+
+#. Accept the Chrome warning via *Advanced -> Proceed to sspm.thylab.local (unsafe)*
+
+   .. note::
+
+    The first time the page is opened it may take a few minutes for the UI is shown. IIS needs some time to build and start the needed files. During the first-time an account with local admin rights on the installation server (SSPM) will need to be used for authentication. Later other local/domain accounts or authentication options can be specified
+
+#. In the sign in dialogue enter the following credentials
+   
+   - **Username**: Thylab\adm-training
+   - **Password**: *Provided by the trainer*
+
+   .. figure:: images/lab-pv-010.png
+
+#. Click **Sign in**
+#. On the **Getting Started** windows click **Close**
 
 .. raw:: html
 
