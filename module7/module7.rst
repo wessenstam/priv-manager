@@ -168,7 +168,7 @@ Testing the created policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Switch to **CLIENT01**
-#. Click the **Update** button
+#. Click the **Update** button in the Agent Utility
 
    .. note::
        If you closed the Agent Utility, open it again by:
@@ -209,13 +209,65 @@ Lab 17 - Creating an installer elevation policy
 #. Click **Update**
 #. Click **Show Advanced** text and make sure **Continue Enforcing Polices** and **Continue Enforcing Policies for Child Processes** are toggle on
 #. The policy should look like the below (with respect to Conditions, Actions and Policy Enforcement)
+   
    .. figure:: images/lab-pv-013.png
 
 #. Click **Save Changes**
 
+   .. note:: 
+      If we left the policy in its current state and applied it, all .msi files would be elevated as we are currently elevating msiexec.exe whenever it runs. To change this behavior, we will now target the specific .msi files we want to elevate
 
+#. Open a browser and navigate to https://7-zip.org/download.html
+#. Select and download the 64bit msi installer
 
+   .. figure:: images/lab-pv-014.png
 
+#. In the Privilege Manager UI, select **Admin > File Upload**
+#. Click **Upload File**
+#. In the new screen click **Choose File** and navigate to the just download .msi file
+#. Click **Upload File**
+#. After the upload and the inventory ha been done, click **Go to File Details**
+
+   .. figure:: images/lab-pv-015.png
+
+#. You see now the details as discovered after the File Upload phase.
+#. Click **Manage Application**
+#. Leave the **Select Platform** to *Windows*
+#. Click **Ok**
+#. Select the **File Name** and click **Create Filter and Add to Policy**
+#. Select the **Global - Elevated Installers (msi)** policy
+#. Click **Update Policy**, the policy will open
+
+   .. note::
+      Under the **Conditions** section note that the filter has been created as a **Secondary Filter**. This means that filter is treated as a secondary file filter to the msiexec.exe we defined in the **Inclusions**. This means that the msiexec application will only be elevated if it is called to install the 7-zip installer.
+
+#. Set the policy to **Active** by clicking the **Inactive** toggle switch
+
+Testing the created policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Switch to **CLIENT01**
+#. Click the **Update** button in the Agent Utility
+
+   .. note::
+       If you closed the Agent Utility, open it again by:
+        
+       - Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
+       - In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
+
+       .. figure:: images/lab-pv-004.png
+
+#. The newly created policy should be shown in green
+
+   .. figure:: images/lab-pv-016.png
+
+#. Open Chrome browser and download the same 7-Zip installer
+#. Start the installation process of the 7-Zip msi file
+#. The installation should be elevated and succeed without any UAC prompt throughout the installation process.
+#. To test another msi, download the putty msi installer from https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi (or use Google to find the URL)
+#. Start the Putty installer, follow the installer and you will see the UAC prompt. As the StandardUser is not an Administrator, the UAC asks for credentials.
+
+   .. figure:: images/lab-pv-017.png
 
 .. raw:: html
 

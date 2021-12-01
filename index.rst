@@ -63,6 +63,7 @@
   :name: _m8
   :hidden:
 
+  module8/module8
 
 .. toctree::
   :maxdepth: 2
