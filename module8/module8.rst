@@ -201,7 +201,7 @@ Lab 20 - Creating a Restricted Applications Policy
    - **Priority:** 30
 
 #. Click **Create Policy** and let's populate the needed fields so we create our policy
-#. Under **Conditions** section, click **Applications Targeted** click **Add Applications Targeted**
+#. Under **Conditions** section > **Applications Targeted** click **Add Applications Targeted**
 #. Add the following from the list on the left hand side:
 
    - Command Processor (cmd.exe)
@@ -237,13 +237,320 @@ Lab 20 - Creating a Restricted Applications Policy
 
 #. Activate the policy by clicking **Inactive**
 
+UAC Replacement
+---------------
+
+Within the Windows (and Server) environment, the vast majority of applications that require elevated rights to install or function will generate a Windows User Account Control (UAC) prompt
+
+.. figure:: images/lab-pv-004a.png
+
+For standard users, that do not possess an administrative credential, Windows UAC does not provide a useful mechanism for elevation as the user has no way of elevating the application or requesting an elevation.
+
+| With Privilege Manager we can completely replace this standard UAC functionality with a customized messaging experience that is as flexible or restrictive as is required. UAC messages can be replaced with the following user experience:
+  
+- **Silently Elevated** – not recommended
+- **Elevation Warning Message** – Can be used to provide a ‘Pseudo’ Admin experience
+- **Elevation Justification Message** – Can be used to collect data about why users are running applications that require elevated rights
+- **Approval Workflow** – Used to ensure users cannot elevate or install applications requiring administrative rights, without gaining approval from a support team or manager
+
+| Different customers may want to apply different types of experience to different communities of user, in our example policy set we will be applying the following:
+  
+- High Privilege Users – Elevation Warning Message for UAC replacement
+- Low Privilege Users – Approval Workflow Message for UAC replacement
+
+.. note:: 
+   A key consideration is the volume of elevations and installations we expect from a given user community, for example if we applied an approval workflow to developers and they need to elevate or install 20 applications a week, this would create a poor user experience for the user and generate a large workload for the support team. 
+
+Lab 21 - Creating a UAC Replacement Policy
+******************************************
+
+Create the UAC replacement policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Navigate to **WINDOW COMPUTERS group > Application Policies**
+#. Click **Create Policy**
+#. Click **Skip the wizard, take me to a blank policy** as we want to control all steps and options ourselves
+#. Use the following parameters for the fields shown:
+
+   - **Name:** High Privilege – UAC Replacement
+   - **Description:** This policy replaces UAC with custom messaging 
+   - **Priority:** 35
+
+#. Click **Create Policy** and let's populate the needed fields so we create our policy
+#. Under **Conditions** section > **Applications Targeted** click **Add Applications Targeted**
+#. Add the following from the list on the left hand side (all are available out-of-the-box):
+
+   - COM Elevation Host (COMElevateHost.exe)
+   - Microsoft Installer File Filter
+   - Require Administrator Rights Manifest Filter
+   - User Access Control Consent Dialog Detected
+
+   .. figure:: images/lab-pv-005.png
+
+#. Click **Update**
+#. Under **Conditions** section, click **Add Inclusions** and add:
+
+   - High Privilege User Context Filter
+
+#. Click **Update**
+#. Under **Conditions** section, click **Add Exclusions** and add the Administrators Group this ensures we won’t try to elevate applications for users that are already administrators. This would not technically cause a problem but is a logical best practice
+#. Click **Update**
+#. Under **Actions** section, click **Add Actions** and add:
+
+   - Add Administrative Rights
+   - Application Warning Message Action
+
+#. Click **Update**
+#. Under **Actions** section, click **Add Child Actions** and add the **Add Administrative Rights**
+#. Click **Update**
+#. Make sure that the **Audit Policy Events** is enabled
+#. Click **Enable**
+#. Click **Save Changes**
+
+#. The policy should look like the below (with respect to Conditions, Actions)
+
+   .. figure:: images/lab-pv-006.png
+
+#. Activate the policy by clicking **Inactive**
+
+Test the restricted application and UAC replacement policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Log onto the client machine **CLIENT01** as **Developer** / *Password provided by trainer*
+#. Start the **Agent Utility** and click **Update** (as the Developer account is part of the High Privilege User Context Polic, no UAC is shown..)
+#. The newly created policies should be shown
+#. Download and run an executable installer of your choice (notepad ++ for example in the Example Applications), you should see a warning message, but you will be able to proceed with the elevation
+
+   .. figure:: images/lab-pv-008.png  
+
+#. Right click notepad and click Run as Administrator, you should see the warning message 
+#. Right click PowerShell and click Run as Administrator, you should see the justification message, enter a reason, and proceed with the elevation. 
+
+   .. figure:: images/lab-pv-009.png  
 
 
+Whitelisting
+------------
+
+The next policy in our set will be an application whitelist, this is a policy designed to catch and allow applications users need to perform their job role that do not require admin rights. In this module we will be deploying **Trusted File Owners** based whitelisting. This approach uses the concept of allowing or "Trusting" applications that are owned at the file level by one of the following accounts/groups:
+
+- System – This makes sure that Privilege Manager seamlessly allows System Processes to run. Most software deployment tools such as SCCM install applications under the System context, so this also ensures that applications deployed via SCCM are typically whitelisted. 
+- Trusted Installer – The vast majority of native Microsoft applications are owned by this account. This ensures these applications will run seamlessly 
+- Administrators Group – If an application is installed via a Privilege Manager elevated process, they will be owned by the Administrators group therefore this entry makes sure the application will be whitelisted following the installation.
+
+.. note:: 
+   The list of trusted accounts can be modified, this allows organizations to create users or groups of users who are effectively "Approved Installers" and can install applications that will automatically be whitelisted for other users. We are going to perform this by using User Context Filters
+
+Lab 21 - Creating a Trusted Installers Whitelisting policy
+**********************************************************
+
+This policy is dependent on a filter which needs to be built first and then can be used in the whitlisting policy
+
+Create the needed filter
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Switch to SSPM
+#. In the Privilege Manager UI, navigate to **Admin -> Filters**
+#. Click **Create Filter**
+#. In the **Platform/Location** field, select **Windows Computers Filters**
+#. In the **Type** field, select **User Context Filter**
+#. **Name** field, type **Trusted File Owners**
+#. In the **Description** field type **Filter used to target account that are trusted as owners of files**
+#. Click **Create**
+#. Click in **Settings** section in the line **Built-in Accounts** the **Add** text
+#. Search and add the following groups:
+   
+   - Administrators
+   - Domain Administrators
+
+#. Click **Select** 
+#. Click in **Settings** section in the line **Well-known Accounts** the **Add** text
+#. Search and add the following accounts:
+   
+   - NT Authority System Account
+   - Trusted Installer
+
+#. Click **Save Changes**
+#. The top of the filter should look roughly like the below screenshot
+
+   .. figure:: images/lab-pv-010.png
+
+Build the whitelisting policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Navigate to **WINDOW COMPUTERS group > Application Policies**
+#. Click **Create Policy**
+#. Click **Skip the wizard, take me to a blank policy** as we want to control all steps and options ourselves
+#. Use the following parameters for the fields shown:
+
+   - **Name:** High Privilege – Whitelist
+   - **Description:** This policy whitelists all for Trusted Installers for High Privilege users 
+   - **Priority:** 40
+
+#. Click **Create Policy** and let's populate the needed fields so we create our policy
+#. Under **Conditions** section, click **Add Inclusions** and add:
+
+   - Trusted File Owners (the just created filter)
+
+     .. note::
+        The built-in filter *Trusted Installer File Owner Filter* is not to be used! This is the out-of-the-box version and Read Only...
+
+#. Click **Update**
+#. Leave Actions empty as we don;t want anything to happen if this policy hits.
+#. Click **Save Changes**
+#. The policy should look like the below (with respect to Conditions, Actions)
+
+   .. figure:: images/lab-pv-011.png
+
+#. Activate the policy by clicking **Inactive**
+
+Catch All Policy
+----------------
+
+If we look at our overall policy set that now exists (filtered on Active only):
+
+.. figure:: images/lab-pv-012.png
+
+The policies all contain specific application conditions. This means the above policies will only apply if those conditions are met. So, importantly, we need to consider a scenario where an application runs that does not meet any of these policies. 
+
+| The way to handle this scenario is to create a catch all policy as the final policy for the targeted community. This approach will be familiar to those with experience of firewall rules and means that we will create a scenario where it is impossible to run an application without, at the very least, it being caught by our catch all. 
+
+Create the Catch-All policy
+***************************
+
+#. Switch back to SSPM
+#. Navigate to **WINDOW COMPUTERS group > Application Policies**
+#. Click **Create Policy**
+#. Click **Monitoring** and click **Next Step**
+#. Click **Everything** and click **Next Step**
+#. Use the following parameters for the fields:
+
+   - **Name:** High Privilege – Catch All
+   - **Description:** This policy catches any application not previously matched
+   - **Priority:** 45
+
+#. Click **Create Policy**
+
+Now we need to make some changes to the create policy
+
+#. Under **Conditions** section, click **Add Inclusions** and add **High Privilege User Context Filter** 
+#. Under **Conditions** section, **Exclusions** click **Edit** and remove all
+#. Click **Update**
+#. Under **Actions** section, click **Add Actions** and add **Application Warning Message Action**
+#. Click **Update**
+#. Make sure that the **Audit Policy Events** is enabled
+#. Click **Enable**
+#. Click **Save Changes**
+#. Activate the policy by clicking the **Inactive** toggle switch
+
+Test the Catch-All policy
+*************************
+
+#. Log onto the client machine **CLIENT01** as **Developer** / *Password provided by trainer*
+#. Open the Agent Utility and click **Update** so we get the newly create policy on the client
+#. Run notepad.exe / paint.exe / cmd.exe without elevation, thy should run seamlessly because they are owned by the Trusted Installer Account. You can see this by right clicking the application in explorer and viewing the advanced security information (notepad.exe as example):
+
+   .. figure:: images/lab-pv-013.png
+
+#. Close all open window till you see the desktop again.
+#. Now go to https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html (or use Google to find it) 
+#. You will see that the putty ssh application is available as a MSI installer (if we install this it will trigger the UAC replacement) or as a binary (portable .exe that does not need to be installed to be executed). **Download the binary .exe file!**. 
+#. Navigate to the downloads directory and right-click the application. Navigate to the advanced security information. You will see that the file is owned by the Developer user. This account is not one of the trusted accounts and therefore the application when executed, should hit our catch all policy and show a warning screen. In our example we have are allowing High Privilege users to run unknown applications like this, for other users we would present an **Approval Workflow**
+
+What is shown in the UI?
+************************
+
+As we have the **Audit Policy Events** enabled let's see what that means in the Privilege Manager UI.
+
+#. Switch back to SSPM
+#. Navigate to **WINDOW COMPUTERS group > Application Policies**
+#. Open the **High Privilege – Catch All** policy
+#. Click the **Policy Events** tab
+#. Besides putty you will also see other applications that have been opened that were not caught by other policies for the Developer user.
+
+   .. figure:: images/lab-pv-014.png
 
 
+Creating a Low Privilege Users policy set
+-----------------------------------------
+
+As we have already created a complete policy set for our high privilege users, we can duplicate these policies and make minor changes to quickly accommodate Low Privilege Users. To do this, simply duplicate each of the High Privilege Policies and rename to Low Privilege. 
+
+.. note::
+   *PRO TIP* Right click the links of the policy and select *open in a new tab* in the browser, it saves time in switching back and forth...
+
+The Priority for each Low Privilege policy needs to be edited as well. Use the below table to get the priority
+
+.. list-table::
+    :widths: 90 10
+    :header-rows: 1
+
+    * - Policy name
+      - Priority
+    * - Low Privilege - Elevated Executable Applications
+      - 50
+    * - Low Privilege - Elevated Installers (msi)
+      - 55
+    * - Low Privilege - Restricted Applications
+      - 60
+    * - Low Privilege - UAC Replacement
+      - 65
+    * - Low Privilege - Whitelist
+      - 69
+    * - Low Privilege - Catch All
+      - 70
+
+The following also needs to be changed for **ALL** Low Privilege policies:
+
+- Under **Conditions**, if **Inclusions** includes *High Privilege User Context Filter*, click **Edit** remove the *High Privilege User Context Filter* and add *Low Privilege User Context Filter*, click **Update**
+- Under **Conditions**, if **Exclusions** does not include *Administrators*, click **Add Exclusions** or **Edit** and add *Administrators*, click **Update**
+- Under **Actions**, **Actions** click **Edit** and add the **Approval Request (With Offline Fallback) Form Action**, click **Update**
+
+  .. warning::
+      For the *Low Privilege - Whitelist* and the *Low Privilege - Catch All* policies **DO NOT** add the **Approval Request (With Offline Fallback) Form Action** to the Actions. This will trigger a lot of Approval requests and makes working with the client as a Low Privilege User impossible
+
+      | For the *Low Privilege - Restricted Applications* remove the *Justify application Elevation Action*. This has been exchanged by the *Approval* process
+
+- **Save Changes**
+- Activate the policy by clicking **Inactive**
+- Repeat for all Polices
+
+.. note::
+   *PRO TIP* Right click the links of the policy and open in a new tab in the browser, it saves time in switching back and forth...
+
+Testing the Low Privilege policies
+**********************************
+
+#. While still being logged in as Developer, open the Agent Utility and click **Update** so we get the newly create policy on the client
+#. Logout and log back in as **SalesUser** / *Password provided by trainer*
+#. Right click PowerShell.exe and click Run as Administrator
+#. You will need to submit an approval request reason and click Continue
+
+   .. figure:: images/lab-pv-015.png
+
+   .. note::
+      If two screens with respect to *Approval* are popping up, make sure that in the **Low Privilege - Restricted** and the **Low Privilege- UAC Replacement** Policies, the option **Continue Enforcing polices** is checked off
+
+#. Go back to the Privilege Manager Console, and navigate to the approvals area via **Admin > Manage Approvals**
+#. Click the Pending Approval Requests** this will show the reason the user has provided and the option to perform one-time elevation or time-based elevation
+
+   .. figure:: images/lab-pv-016.png
 
 
+#. Click **Approve** 
+#. Keep **One Time** selected and click **Approve**
 
+   .. figure:: images/lab-pv-017.png
+
+#. Go back to the client machine, 
+#. The application notice window should have refreshed automatically, if not click Refresh
+
+   .. figure:: images/lab-pv-019.png
+
+#. Click Continue, you now have an elevated PowerShell instance 
+
+.. note:: 
+   As a stretch exercise: Disable the network adapter and retry the above exercise. As there is no internet connection the user will have a challenge code generated. From the Privilege Manager console, go to Tools > Offline approvals to generate a response code. The user can enter the response code to execute or elevate an application even if they do not have a network/internet connection. 
 
 
 

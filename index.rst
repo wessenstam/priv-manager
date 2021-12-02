@@ -67,10 +67,11 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Module 9 - Local account and group Security
+  :caption: Module 9 - Local Security
   :name: _m9
   :hidden:
 
+  module9/module9
 
 .. _getting_started:
 

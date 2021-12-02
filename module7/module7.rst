@@ -122,6 +122,7 @@ We are going to use the Wizard again to create the blocking policy to not allow 
    - **Priority:** 10
 
 #. Click **Create Policy**
+#. Activate the policy by clicking the **Inactive** toggle switch
 
 Using Policy Events to add applications to policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

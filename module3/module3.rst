@@ -14,6 +14,8 @@ This module will cover:
 3. Install an agents
 4. Check the installation of the agent
 
+.. _agentref:
+
 Agent overview
 --------------
 
