@@ -21,9 +21,9 @@ In this module we will be exploring how Privilege Manager policies are used to c
 | Typically, policies are used to achieve the following:
 
 - Elevation – Allowing applications to run with elevated privileges 
-- denylisting - Blocking applications from being executed
-- allowlisting Allowing applications to run with standard user rights (allowlisting)
-- execptionlisting - Catching unknown applications that have not been explicitly elevated, blocked or allowed
+- Denylisting - Blocking applications from being executed
+- Allowlisting Allowing applications to run with standard user rights (allowlisting)
+- Execptionlisting - Catching unknown applications that have not been explicitly elevated, blocked or allowed
 
 The above outcomes can be achieved seamlessly, so the action to elevate, block or allow happens seamlessly to the end user, or with customizable messaging which provides additional functionality. 
 

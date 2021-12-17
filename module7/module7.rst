@@ -10,7 +10,7 @@ Overview
 This module will cover:
 
 1. Policy Creation Methodology
-2. Backlisting (blocking application execution)
+2. Denylisting (blocking application execution)
 3. Executable Elevation Policies
 4. Installer Elevation Policies
 
@@ -27,7 +27,7 @@ The diagram below illustrates this concept:
 
 In the following lab exercises we will now create a range of policies based on the principles explained above but also taking into consideration the fact that most organizations have multiple types or communities of users who require different types of endpoint experience. 
 
-Backlisting (blocking application execution)
+Denylisting (blocking application execution)
 ---------------------------------------------
 
 Creating a policy to prevent applications which are known to be malicious or inhibit user productivity is a very common use that can easily be fulfilled with Privilege Manager. When creating a denylisting policy, it will typically be the first policy in the set with the lowest priority level. This avoids any risk of any other policies inadvertently allowing an application to run which we intent to block. 

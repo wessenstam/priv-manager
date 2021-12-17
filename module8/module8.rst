@@ -12,7 +12,7 @@ This module will cover:
 1. Creating user context filters
 2. Creating policy tied to user context filters
 3. UAC replacement
-4. allowlisting
+4. Allowlisting
 5. Catch all policy
 
 Introduction
@@ -329,7 +329,7 @@ Test the restricted application and UAC replacement policy
    .. figure:: images/lab-pv-009.png  
 
 
-allowlisting
+Allowlisting
 ------------
 
 The next policy in our set will be an application allowlist, this is a policy designed to catch and allow applications users need to perform their job role that do not require admin rights. In this module we will be deploying **Trusted File Owners** based allowlisting. This approach uses the concept of allowing or "Trusting" applications that are owned at the file level by one of the following accounts/groups:
