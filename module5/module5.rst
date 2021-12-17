@@ -21,9 +21,9 @@ In this module we will be exploring how Privilege Manager policies are used to c
 | Typically, policies are used to achieve the following:
 
 - Elevation – Allowing applications to run with elevated privileges 
-- Blacklisting - Blocking applications from being executed
-- Whitelisting Allowing applications to run with standard user rights (whitelisting)
-- Greylisting - Catching unknown applications that have not been explicitly elevated, blocked or allowed
+- denylisting - Blocking applications from being executed
+- allowlisting Allowing applications to run with standard user rights (allowlisting)
+- execptionlisting - Catching unknown applications that have not been explicitly elevated, blocked or allowed
 
 The above outcomes can be achieved seamlessly, so the action to elevate, block or allow happens seamlessly to the end user, or with customizable messaging which provides additional functionality. 
 
@@ -159,11 +159,11 @@ Policy Enforcement settings determine how the policy is evaluated in several dif
 
 - Continue enforcing policies for child processes after enforcing this policy
 
-  - If enabled, this setting means that even when the policy applies, Privilege Manager will continue evaluating other policies within the policy set, if no other policy applies then the actions of the policy will be applied. As an example. We may want to pass child processes back through a blacklist filter to ensure users cannot circumnavigate a blocked application by running it as a child process of an allowed application. 
+  - If enabled, this setting means that even when the policy applies, Privilege Manager will continue evaluating other policies within the policy set, if no other policy applies then the actions of the policy will be applied. As an example. We may want to pass child processes back through a denylist filter to ensure users cannot circumnavigate a blocked application by running it as a child process of an allowed application. 
 
 - Stage 2 processing
 
-  If a policy is marked as a stage 2 processing policy, then Privilege Manager ignores the policy on the first two passes through the policy set as would be the case in the first two examples above. This is commonly used with catchall policies that would match on any application. If passing child processes back through a policy set to evaluate against a blacklist, we would not want the application to match against the catchall policy.
+  If a policy is marked as a stage 2 processing policy, then Privilege Manager ignores the policy on the first two passes through the policy set as would be the case in the first two examples above. This is commonly used with catchall policies that would match on any application. If passing child processes back through a policy set to evaluate against a denylist, we would not want the application to match against the catchall policy.
 
 - Applies to all processes
 

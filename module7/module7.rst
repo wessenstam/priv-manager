@@ -30,12 +30,12 @@ In the following lab exercises we will now create a range of policies based on t
 Backlisting (blocking application execution)
 ---------------------------------------------
 
-Creating a policy to prevent applications which are known to be malicious or inhibit user productivity is a very common use that can easily be fulfilled with Privilege Manager. When creating a blacklisting policy, it will typically be the first policy in the set with the lowest priority level. This avoids any risk of any other policies inadvertently allowing an application to run which we intent to block. 
+Creating a policy to prevent applications which are known to be malicious or inhibit user productivity is a very common use that can easily be fulfilled with Privilege Manager. When creating a denylisting policy, it will typically be the first policy in the set with the lowest priority level. This avoids any risk of any other policies inadvertently allowing an application to run which we intent to block. 
 
 .. note:: 
-    Although deploying blacklisting policies is common, it is important to note that blacklisting on its own is not an effective approach to creating a secure endpoint application environment. The reason for this is that a blacklist represents a point in time snapshot of applications. There are constantly new, unknown applications that cannot be targeted. In further modules we will explore how a combination of blacklisting, whitelisting and greylisting can be used to create a secure environment. 
+    Although deploying denylisting policies is common, it is important to note that denylisting on its own is not an effective approach to creating a secure endpoint application environment. The reason for this is that a denylist represents a point in time snapshot of applications. There are constantly new, unknown applications that cannot be targeted. In further modules we will explore how a combination of denylisting, allowlisting and execptionlisting can be used to create a secure environment. 
 
-Lab 15 - Creating a blacklisting (blocked application) policy
+Lab 15 - Creating a denylisting (blocked application) policy
 *************************************************************
 
 Before starting the lab exercise, we will disable the **Monitor Applications Run with Administrator Rights Policy** we created earlier in Module 6 as the policy set we are creating will also capture valuable discovery events. To disable this policy
@@ -156,7 +156,7 @@ Now that we have the policy created, **don't** set the policy to Activate. We wa
    .. figure:: images/lab-pv-012.png
 
    .. note::
-       This ensures that child processes of this application will have the same actions applied as the parent. In some cases, it can be dangerous to elevate child processes from some applications so this setting should be used with caution. The policy set we are creating will also pass child processes back through the entire policy set to ensure every child process is checked against blacklists and other policies
+       This ensures that child processes of this application will have the same actions applied as the parent. In some cases, it can be dangerous to elevate child processes from some applications so this setting should be used with caution. The policy set we are creating will also pass child processes back through the entire policy set to ensure every child process is checked against denylists and other policies
 
 #. Click **Show Advanced** text and enable **Continue Enforcing Polices** by clicking the toggle switch
 

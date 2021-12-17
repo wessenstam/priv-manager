@@ -12,7 +12,7 @@ This module will cover:
 1. Creating user context filters
 2. Creating policy tied to user context filters
 3. UAC replacement
-4. Whitelisting
+4. allowlisting
 5. Catch all policy
 
 Introduction
@@ -121,7 +121,7 @@ In the following lab exercises we will be adding additional policies that will b
 
   - This policy provides a broad policy that targets any application that generates a UAC prompt for the targeted community
 
-- High Privilege Whitelist
+- High Privilege allowlist
 
   - This policy targets any application with Trusted Ownership for the targeted community
 
@@ -329,19 +329,19 @@ Test the restricted application and UAC replacement policy
    .. figure:: images/lab-pv-009.png  
 
 
-Whitelisting
+allowlisting
 ------------
 
-The next policy in our set will be an application whitelist, this is a policy designed to catch and allow applications users need to perform their job role that do not require admin rights. In this module we will be deploying **Trusted File Owners** based whitelisting. This approach uses the concept of allowing or "Trusting" applications that are owned at the file level by one of the following accounts/groups:
+The next policy in our set will be an application allowlist, this is a policy designed to catch and allow applications users need to perform their job role that do not require admin rights. In this module we will be deploying **Trusted File Owners** based allowlisting. This approach uses the concept of allowing or "Trusting" applications that are owned at the file level by one of the following accounts/groups:
 
-- System – This makes sure that Privilege Manager seamlessly allows System Processes to run. Most software deployment tools such as SCCM install applications under the System context, so this also ensures that applications deployed via SCCM are typically whitelisted. 
+- System – This makes sure that Privilege Manager seamlessly allows System Processes to run. Most software deployment tools such as SCCM install applications under the System context, so this also ensures that applications deployed via SCCM are typically allowlisted. 
 - Trusted Installer – The vast majority of native Microsoft applications are owned by this account. This ensures these applications will run seamlessly 
-- Administrators Group – If an application is installed via a Privilege Manager elevated process, they will be owned by the Administrators group therefore this entry makes sure the application will be whitelisted following the installation.
+- Administrators Group – If an application is installed via a Privilege Manager elevated process, they will be owned by the Administrators group therefore this entry makes sure the application will be allowlisted following the installation.
 
 .. note:: 
-   The list of trusted accounts can be modified, this allows organizations to create users or groups of users who are effectively "Approved Installers" and can install applications that will automatically be whitelisted for other users. We are going to perform this by using User Context Filters
+   The list of trusted accounts can be modified, this allows organizations to create users or groups of users who are effectively "Approved Installers" and can install applications that will automatically be allowlisted for other users. We are going to perform this by using User Context Filters
 
-Lab 21 - Creating a Trusted Installers Whitelisting policy
+Lab 21 - Creating a Trusted Installers allowlisting policy
 **********************************************************
 
 This policy is dependent on a filter which needs to be built first and then can be used in the whitlisting policy
@@ -375,7 +375,7 @@ Create the needed filter
 
    .. figure:: images/lab-pv-010.png
 
-Build the whitelisting policy
+Build the allowlisting policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Navigate to **WINDOW COMPUTERS group > Application Policies**
@@ -383,8 +383,8 @@ Build the whitelisting policy
 #. Click **Skip the wizard, take me to a blank policy** as we want to control all steps and options ourselves
 #. Use the following parameters for the fields shown:
 
-   - **Name:** High Privilege – Whitelist
-   - **Description:** This policy whitelists all for Trusted Installers for High Privilege users 
+   - **Name:** High Privilege – allowlist
+   - **Description:** This policy allowlists all for Trusted Installers for High Privilege users 
    - **Priority:** 40
 
 #. Click **Create Policy** and let's populate the needed fields so we create our policy
@@ -495,7 +495,7 @@ The Priority for each Low Privilege policy needs to be edited as well. Use the b
       - 60
     * - Low Privilege - UAC Replacement
       - 65
-    * - Low Privilege - Whitelist
+    * - Low Privilege - allowlist
       - 69
     * - Low Privilege - Catch All
       - 70
@@ -507,7 +507,7 @@ The following also needs to be changed for **ALL** Low Privilege policies:
 - Under **Actions**, **Actions** click **Edit** and add the **Approval Request (With Offline Fallback) Form Action**, click **Update**
 
   .. warning::
-      For the *Low Privilege - Whitelist* and the *Low Privilege - Catch All* policies **DO NOT** add the **Approval Request (With Offline Fallback) Form Action** to the Actions. This will trigger a lot of Approval requests and makes working with the client as a Low Privilege User impossible
+      For the *Low Privilege - allowlist* and the *Low Privilege - Catch All* policies **DO NOT** add the **Approval Request (With Offline Fallback) Form Action** to the Actions. This will trigger a lot of Approval requests and makes working with the client as a Low Privilege User impossible
 
       | For the *Low Privilege - Restricted Applications* remove the *Justify application Elevation Action*. This has been exchanged by the *Approval* process
 
