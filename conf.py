@@ -52,8 +52,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ThycoticCentrify Enablement'
-copyright = u'2021 ThycoticCentrify'
+project = u'Privilege Manager'
+copyright = u'2022 ThycoticCentrify'
 author = u'ThycoticCentrify Technical Enablement'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -61,7 +61,7 @@ author = u'ThycoticCentrify Technical Enablement'
 # built documents.
 #
 # The short X.Y version.
-version = u''
+version = u'3.0'
 # The full version, including alpha/beta/rc tags.
 release = u''
 
