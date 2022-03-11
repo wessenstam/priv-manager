@@ -1,4 +1,4 @@
-.. title:: ThycoticCentrify - Privilige Manager Handson Training
+.. title:: Delinea - Privilige Manager Handson Training
 
 .. toctree::
    :maxdepth: 2
