@@ -266,7 +266,7 @@ Testing the created policy
 #. Start the installation process of the 7-Zip msi file
 #. The installation should be elevated and succeed without any UAC prompt throughout the installation process.
 #. To test another msi, download the putty msi installer from https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi (or use Google to find the URL)
-#. Start the Putty installer, follow the installer and you will see the UAC prompt after a few steps. NOT AT THE BEGINNING OF THE INSTALLTION!!!!. As the StandardUser is not an Administrator, the UAC asks for credentials.
+#. Start the Putty installer, follow the installer and you will see the UAC prompt after a few steps. **NOT AT THE BEGINNING OF THE INSTALLATION!!!!**. As the StandardUser is not an Administrator, the UAC asks for credentials.
 
    .. figure:: images/lab-pv-017.png
 
