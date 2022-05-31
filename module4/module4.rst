@@ -30,7 +30,7 @@ At the point of installation, the local administrator’s group on the installat
 Lab 7 - Configuring Active Directory Integration
 ************************************************
 
-#. Ensure you are logged in to Privilege Manager on **SSPM** with **thylab\adm-training** / *Provided by the trainer*
+#. Ensure you are logged in to Privilege Manager on **SSPM** with **thylab\\adm-training** / *Provided by the trainer*
 #. Navigate to the **Admin > Configuration** page
 #. Open the **Credentials** tab. 
 
@@ -76,10 +76,10 @@ Lab 8 - Running an initial AD sync
 
 Now that Privilege Manager has been integrated with an Active Directory instance, a synchronization task can be run. This task can also be scheduled to ensure Privilege Manager is constantly synchronized with changes that may occur within AD.
 
-#. While still being in Privilege manager's UI as **thylab\adm-training**, as you created the new Active Directory THYLAB
+#. While still being in Privilege manager's UI as **thylab\\adm-training**, as you created the new Active Directory THYLAB
 
    .. note::
-       If you are in this configuration part of Privilege Manager, login to the SSPM as **thylab\adm-training** open the UI at **https://sspm.thylab.local/TMS/PrivilegeManager**, log in as **thylab\adm-training** the the *provide password by the trainer*, and in the UI **Admin > Configuration > Foreign Systems > THYLAB**
+       If you are in this configuration part of Privilege Manager, login to the SSPM as **thylab\\adm-training** open the UI at **https://sspm.thylab.local/TMS/PrivilegeManager**, log in as **thylab\\adm-training** the the *provide password by the trainer*, and in the UI **Admin > Configuration > Foreign Systems > THYLAB**
 
 #. Select the Synchronization tab
 #. In the **Import** section select all but the **Custom LDAP Query**

@@ -127,7 +127,7 @@ In this exercise will power on and connect to the training lab environment befor
    .. figure:: images/lab-pv-006.png
 
 #. On the next screen we will be asked to configure the service account that will be used to connect to the SQL database and used to run the IIS application pools. Enter the following credentials:
-   | **username**: *thylab\svc_PrivilegeManager* 
+   | **username**: *thylab\\svc_PrivilegeManager* 
    | **password**: *Provided by the trainer*
 #. To ensure the credentials are correct, click **Validate Credentials**, if they are you should see the word success. If not, check the credentials for any errors. Click **Next**
 #. On the next screen, options to configure an SMTP mail server are available. This feature will not be used during the training so click **Skip Email** 
@@ -163,7 +163,7 @@ Lab 3 - Accessing Privilege Manager for the first time
 
 #. In the sign in dialogue enter the following credentials
    
-   - **Username**: Thylab\adm-training
+   - **Username**: Thylab\\adm-training
    - **Password**: *Provided by the trainer*
 
    .. figure:: images/lab-pv-010.png

@@ -113,11 +113,11 @@ The Secret Server lab consists of the following machines:
 | The administrative credentials you will need to log into the lab machines:
 |
 | **Windows Domain Admin Account**
-| Username: thylab\adm-training
+| Username: thylab\\adm-training
 | Password: *Password will be provided by trainer*
 |
 | **Windows Domain Standard User Account (for testing policy)**
-| Username: thylab\StandardUser
+| Username: thylab\\StandardUser
 | Password: *Password will be provided by trainer*
 
 

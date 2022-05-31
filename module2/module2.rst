@@ -23,7 +23,7 @@ Before any agents can be connected to privilege manager, valid licenses need to 
 Lab 4 – Installing licenses 
 ***************************
 
-#. Ensure you are logged in to Privilege Manager with the **thylab\adm-training** account
+#. Ensure you are logged in to Privilege Manager with the **thylab\\adm-training** account
 #. Click the **Admin** all the way to the bottom of the screen and select **Licenses**
 
    .. figure:: images/lab-pv-001.png
@@ -33,7 +33,7 @@ Lab 4 – Installing licenses
 
    .. figure:: images/lab-pv-002.png
 
-#. Click **Add**, you will be prompted with a message ‘License installed successfully’ click OK
+#. Click **Add**, you will be prompted with a message "License installed successfully" click OK
 #. *Repeat* steps 4 and 5 for the second license key
 #. Your lab environment is now licensed for Windows and Mac OS client endpoints and Windows servers
 
