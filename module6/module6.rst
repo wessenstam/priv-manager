@@ -81,7 +81,7 @@ Creating a policy that will catch the events for applications that have been run
 
 #. In the right pane you already see some example polices mentioned.
 
-   .. figure:: images/lab-pv-001.png
+   .. figure:: images/pm-0001.png
 
 #. Click **Create Policy**. Is this lab we are going to use the *Wizard* driven version. You can also start from scratch, we are going to use that later on in the lab.
 #. Click **Monitoring**
@@ -95,7 +95,7 @@ Creating a policy that will catch the events for applications that have been run
    - **Priority:** 100
 
    .. note::
-       To read more detailed information on priority and policies read this article which describes in depth the why, how and what. https://docs.Delinea.com/privman/11.2.0/computer-groups/app-control/policies/priority.md
+       To read more detailed information on priority and policies read this article which describes in depth the why, how and what. https://docs.delinea.com/privman/11.2.1/computer-groups/app-control/policies/priority.md
 
 #. Click **Create Policy**
 #. Click the **Inactive** switch to activate the policy The Inactive should change to **Active**. The policy is ready to be deployed and tested
@@ -131,21 +131,21 @@ Now that policy has been enabled, we will move the client machine, ensure that t
 #. Accept the UAC elevation prompt
 #. Click the **Update** option, the newly enabled discovery policies should now be applied
 
-   .. figure:: images/lab-pv-003.png
+   .. figure:: images/pm-0002.png
 
 #. Close and reopen the **Agent Utility** application (this application requires admin rights so should match the policy)
-#. Open the **Example Applications** directory on the desktop, run the **Notepad ++ (npp.7.8.6.Installer.x64) installer**, this installer requires admin rights and should match the policy. Just start and stop the installation after the UAC has been shown..
+#. Open the **Example Applications** directory on the desktop, run the **Notepad ++ (npp.7.8.6.Installer.x64) installer**, this installer requires admin rights and should match the policy. Just start and stop the installation after the UAC has been shown by clicking the **Cancel** button.
 
 Understanding Privilege Manager Policy Events
 ---------------------------------------------
 
-Within a few minutes of application being matched against a Privilege Manager policy that is set to capture policy feedback, events will be visible in the Privilege Manager console, you have to scroll down until you see the **EVENT SUMMARY** widget
+Return to the SSPM server and open the Privilege Manager UI and click the Logo and Text Privilege Manager (top left navigation bar) to open the home screen. Within a few minutes, applications that are being matched against a Privilege Manager policy that is set to capture policy feedback, events will be visible in the Privilege Manager console, you have to scroll down until you see the **EVENT SUMMARY** widget
 
-   .. figure:: images/lab-pv-004.png
+.. figure:: images/pm-0003.png
 
 These events can be viewed in various ways, applications that require admin rights will also be visible in the **Top Applications Needing Elevation** view
 
-   .. figure:: images/lab-pv-005.png
+.. figure:: images/pm-0004.png
 
 You will notice that these applications initially appear in the console as a **New Loaded Resource**. This is because when an application is matched against a policy the Privilege Manager agent records the hash of the application and the file path only. This information is then sent back to the server where a task is executed to see if that application has previously been seen and therefore additional data such as filename, certificate etc. is already present within the Privilege Manager database. If it is, then the application information would immediately be available and would not appear as a *New Loaded Resource*, if the application has not been seen previously, then a task is created and assigned to a machine where that application has been executed to run inventory and retrieve the additional information.
 
@@ -159,22 +159,21 @@ There are two ways that *New Loaded Resources* can be discovered, either by runn
 Manually discover a New Loaded Resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Switch back the **SSPM** machine and log into the Privilege Manager console if you have been logged out.
 #. From the Privilege Manager Console, click the first number in the **Events Summary View**
 
-   .. figure:: images/lab-pv-006.png
+   .. figure:: images/pm-0005.png
 
 #. Click the first of the **New Loaded Resource** items
 #. Your view will look something like the image below
 
-   .. figure:: images/lab-pv-007.png
+   .. figure:: images/pm-0006.png
 
 #. Click the **Discover Now** button 
 #. As you can see in the Discovery Status field, the task has already been assigned to the agent on **CLIENT01**, running the **Discover Now** button will trigger the agent on this machine to run the task immediately rather than waiting for the next scheduled instance of the task to run 
 #. Click **Back to Application Events By Type** in the top left corner of the middle pane
 #. There should not be any **New Loaded Resource** left as the Discovery has run against all. 
 
-   .. figure:: images/lab-pv-008.png
+   .. figure:: images/pm-0007.png
 
    .. note::
        Remember we ran JUST on CLIENT01 and not on other machines. The **Discover Now** will run against all NON discovered applications.
@@ -195,7 +194,7 @@ In testing, POC, and pre-production environments it can be advantageous if event
 #. For the **Name** field, use **Custom Perform Resource Discovery (Windows)**
 #. Click **Create**
 
-   .. figure:: images/lab-pv-009.png
+   .. figure:: images/pm-0008.png
 
 #. In the **Job Schedule** section Click on the existing **Schedule**
 #. Click the *Show Advanced* text
@@ -209,7 +208,7 @@ In testing, POC, and pre-production environments it can be advantageous if event
 #. Click **Save Changes**
 #. The **Job Schedule** section should now mentioned the repeating of 4 minutes
 
-   .. figure:: images/lab-pv-010.png
+   .. figure:: images/pm-0009.png
    
 #. Click **Inactive** so the Job becomes **Active**
 #. This now means that the longest it should take for a **New Loaded Resource** to be discovered is a maximum of 6 minutes
