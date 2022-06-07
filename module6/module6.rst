@@ -95,7 +95,7 @@ Creating a policy that will catch the events for applications that have been run
    - **Priority:** 100
 
    .. note::
-       To read more detailed information on priority and policies read this article which describes in depth the why, how and what. https://docs.thycotic.com/privman/11.2.0/computer-groups/app-control/policies/priority.md
+       To read more detailed information on priority and policies read this article which describes in depth the why, how and what. https://docs.Delinea.com/privman/11.2.0/computer-groups/app-control/policies/priority.md
 
 #. Click **Create Policy**
 #. Click the **Inactive** switch to activate the policy The Inactive should change to **Active**. The policy is ready to be deployed and tested
@@ -127,7 +127,7 @@ Lab 12 - Testing the *Run with Administrator rights* policy
 Now that policy has been enabled, we will move the client machine, ensure that the newly enabled policy has been applied and execute applications that should be picked up by the discovery policies.
 
 #. Connect to the Client machine with the **thylab\\adm-training** / *Provided by trainer* Credentials
-#. Open the **Privilege Manager Agent Utility** (pinned to the taskbar in an early exercise or navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent\\Agent Utility.exe**)
+#. Open the **Privilege Manager Agent Utility** (pinned to the taskbar in an early exercise or navigate to **C:\\Program Files\\Delinea\\Agents\\Agent\\Agent Utility.exe**)
 #. Accept the UAC elevation prompt
 #. Click the **Update** option, the newly enabled discovery policies should now be applied
 

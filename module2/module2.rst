@@ -14,7 +14,7 @@ This module will cover:
 Installing Licenses
 -------------------
 
-Before any agents can be connected to privilege manager, valid licenses need to be added. Thycotic license Client (Windows 10 etc. / MacOS). Your trainer will provide you trial licenses for use during the training. 
+Before any agents can be connected to privilege manager, valid licenses need to be added. Delinea license Client (Windows 10 etc. / MacOS). Your trainer will provide you trial licenses for use during the training. 
 
 .. note::
 

@@ -21,7 +21,7 @@ Agent overview
 
 The Privilege Manger agent provides flexible, lightweight endpoint connectivity. The agent checks for, evaluates, and applies the XML policies built within the Privilege Manager administrative console. The agent consists of three sub agents which can be installed collectively or as separate components if certain functionality is not required 
 
-- Core Thycotic Agent (x64)
+- Core Delinea Agent (x64)
 - Application Control Agent (x64)
 - Local Security Solution Agent (x64): 
 
@@ -35,7 +35,7 @@ The executable installer is designed to be run interactively by an end user and 
 
 All installers are available to download from 
 
-- https://docs.thycotic.com/privman
+- https://docs.Delinea.com/privman
 - https://www.ibm.com/support/pages/download-agents-privilege-manager-and-secret-server
 
 MSI Installing
@@ -43,23 +43,23 @@ MSI Installing
 
 When using the .msi installers, installation strings can also be used to define several installation parameters, examples are provided below for reference:
 
-| **Core Thycotic Agent**
+| **Core Delinea Agent**
 
 .. code-block:: bash
     
-    msiexec.exe /i "ThycoticAgent_x64_10_7_2219.msi" /norestart AMSURL=https://SERVERNAME/TMS/ INSTALLCODE=XXXX1234ABCD REBOOT=ReallySuppress /qn
+    msiexec.exe /i "DelineaAgent_x64_10_7_2219.msi" /norestart AMSURL=https://SERVERNAME/TMS/ INSTALLCODE=XXXX1234ABCD REBOOT=ReallySuppress /qn
 
 | **Application Control Agent**
 
 .. code-block:: bash
     
-    msiexec.exe /i "Thycotic_ApplicationControlAgent_x64_10_7_2239.msi" /norestart REBOOT=ReallySuppress /qn
+    msiexec.exe /i "Delinea_ApplicationControlAgent_x64_10_7_2239.msi" /norestart REBOOT=ReallySuppress /qn
 
 | **Local Security Agent**
 
 .. code-block:: bash
     
-    msiexec.exe /i "Thycotic_LocalSecurityAgent_x64_10_7_2219.msi" /norestart REBOOT=ReallySuppress /qn
+    msiexec.exe /i "Delinea_LocalSecurityAgent_x64_10_7_2219.msi" /norestart REBOOT=ReallySuppress /qn
 
 Lab 5 - Bundle Agent installation
 *********************************
@@ -68,7 +68,7 @@ In this exercise we will be installing the executable, bundled agent installer o
 
 #. Ensure you are logged on to the Client machine within the lab environment with the **adm-training** / *Provided Password by trainer* Credentials
 #. Open a file explorer and type: **\\SSPM\Installers** in the address bar
-#. Open the **Privilege Manager > Thycotic (or IBM) > Agent** directory
+#. Open the **Privilege Manager > Delinea (or IBM) > Agent** directory
 #. Copy the agent installer to the desktop 
 #. Run the agent installer, the agent installation dialogue will appear
 
@@ -105,11 +105,11 @@ In this exercise we will be installing the executable, bundled agent installer o
 Lab 6 – Checking the agent installation with the Agent Utility
 **************************************************************
 
-To ensure that the agent is successfully registered with the Privilege Manger server the Thycotic Agent Utility can be used to very connectivity, check for new policies and various other tasks. The Agent Utility will be covered in more detail in various sections throughout this guide. 
+To ensure that the agent is successfully registered with the Privilege Manger server the Delinea Agent Utility can be used to very connectivity, check for new policies and various other tasks. The Agent Utility will be covered in more detail in various sections throughout this guide. 
 
 #. Ensure you are logged on to the Client machine with the **adm-training** / *Provided Password by trainer* Credentials
 #. Open **Windows Explorer**
-#. Navigate to **C:\Program Files\Thycotic\Agents\Agent** and open the Agent Utility application
+#. Navigate to **C:\Program Files\Delinea\Agents\Agent** and open the Agent Utility application
 
    .. figure:: images/lab-pv-004.png
 

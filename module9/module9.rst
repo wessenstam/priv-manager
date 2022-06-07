@@ -65,7 +65,7 @@ Setting the Privileges policy
 #. Navigate to **WINDOW COMPUTERS group > User Management**
 #. Select account **LAndrews**
 #. Check the **User Managed** toggle switch
-#. Set the **Initial password** by clicking the **Edit** text to **Thycotic@2021!**. You have to provide the password twice!
+#. Set the **Initial password** by clicking the **Edit** text to **Delinea@2021!**. You have to provide the password twice!
 #. Click **Save Password**
 #. Click **Save Changes**
 #. Navigate to **WINDOW COMPUTERS group > Group Management**
@@ -128,7 +128,7 @@ Creating the Managed Account - Part 1
 #. Check the **User Managed** box
 #. Add a description: *This account is used for IT Team purposes only*
 #. In the Initial Password field, click the **Edit** text
-#. Enter an initial password of: **Thycotic@2021!**
+#. Enter an initial password of: **Delinea@2021!**
 #. Confirm the password
 #. Click **Save Password**
 #. Click **Save Changes**

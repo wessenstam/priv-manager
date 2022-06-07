@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# ThycoticCentrify Labs documentation build configuration file, created by
+# DelineaCentrify Labs documentation build configuration file, created by
 # sphinx-quickstart on Fri Oct 27 12:18:41 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -61,7 +61,7 @@ author = u'Delinea Technical Enablement'
 # built documents.
 #
 # The short X.Y version.
-version = u'3.0'
+version = u'4.0'
 # The full version, including alpha/beta/rc tags.
 release = u''
 

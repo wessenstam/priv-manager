@@ -73,7 +73,7 @@ To test the policy we are going to login to the **CLIENT01** machine.
 #. Sign out the current user, by clicking on the 
 #. At the login screen, click **Other user**
 #. Use **standarduser** / *Password provide by trainer*
-#. Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
+#. Navigate to **C:\\Program Files\\Delinea\\Agents\\Agent** and double click **Agent Utility**
 #. In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
 
    .. figure:: images/lab-pv-004.png
@@ -174,7 +174,7 @@ Testing the created policy
    .. note::
        If you closed the Agent Utility, open it again by:
         
-       - Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
+       - Navigate to **C:\\Program Files\\Delinea\\Agents\\Agent** and double click **Agent Utility**
        - In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
 
        .. figure:: images/lab-pv-004.png
@@ -253,7 +253,7 @@ Testing the created policy
    .. note::
        If you closed the Agent Utility, open it again by:
         
-       - Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
+       - Navigate to **C:\\Program Files\\Delinea\\Agents\\Agent** and double click **Agent Utility**
        - In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
 
        .. figure:: images/lab-pv-004.png
