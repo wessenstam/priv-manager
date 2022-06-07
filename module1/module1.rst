@@ -155,7 +155,7 @@ In this exercise will power on and connect to the training lab environment befor
 Lab 3 - Accessing Privilege Manager for the first time
 ******************************************************
 
-#. While still on the **SSPM** VM, open Chrome (on your desktop and navigate to the following URL: https://sspm.thylab.local/TMS/PrivilegeManager)
+#. While still on the **SSPM** VM, open Chrome (on your desktop) and navigate to the following URL: https://sspm.thylab.local/TMS/PrivilegeManager
 
    .. note::
 
