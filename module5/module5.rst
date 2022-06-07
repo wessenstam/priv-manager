@@ -188,8 +188,7 @@ Change History
 
 This tab show the history of the Policy and who has done what with respect to changing the policy. Clicking an item will provide more detailed information.
 
-.. figure:: images/pm-0009.png.png
-
+.. figure:: images/pm-0009.png
 .. raw:: html
 
     <hr><CENTER>
