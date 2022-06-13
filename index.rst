@@ -127,6 +127,11 @@ Introduction
 Your trainer will provide a slide-based introduction to Privilege Manager, the slide deck used will
 be shared.
 
+General remark
+--------------
+
+When logging into the Client01 VM as "normal" none administrative account, please be patient as due to new updates of Windows that have been installed, lots needs to be updated in the backend... It may take 1-3 minutes per user. Also the first time you open the Privilege Manager UI it will take time to get IIS ready to serve the UI. This is only on the first time the UI is opened.
+
 Versioning
 **********
 
