@@ -41,11 +41,11 @@ Lab 24 - Viewing Local Privileges
    2. BUILT-IN - Defines if this is a built-in group of Microsoft Windows, or User Defined
    3. MANAGED - If the group is under control of Privilege Manager or not.
 
-   .. figure:: images/lab-pv-001.png
+   .. figure:: images/pm-0001.png
 
-#. Click the **Administrators** group and see what information is being showed. Don;t change anything as we will do so at a later stage of this module
+#. Click the **Administrators** group and see what information is being showed. Don't change anything as we will do so at a later stage of this module
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0002.png
 
 Controlling Local Privileges
 ----------------------------
@@ -65,7 +65,7 @@ Setting the Privileges policy
 #. Navigate to **WINDOW COMPUTERS group > User Management**
 #. Select account **LAndrews**
 #. Check the **User Managed** toggle switch
-#. Set the **Initial password** by clicking the **Edit** text to **Delinea@2021!**. You have to provide the password twice!
+#. Set the **Initial password** by clicking the **Edit** text to **Delinea@2022!**. You have to provide the password twice!
 #. Click **Save Password**
 #. Click **Save Changes**
 #. Navigate to **WINDOW COMPUTERS group > Group Management**
@@ -76,7 +76,7 @@ Setting the Privileges policy
    - LAndrews - change *OPERATION* to **Remove if Found**
    - All Other Users and Groups - change *OPERATION* to **Remove if Found**
 
-   .. figure:: images/lab-pv-003.png
+   .. figure:: images/pm-0003.png
 
 #. Click **Save Changes**
 #. In the *Manage Group* windows click **Yes**
@@ -93,8 +93,7 @@ Testing the policies
 #. Update the policies on the client from the **Agent Utility** (due to policies you will get the Warning message, click **Continue**). The two new created policies will be shown in green.
 #. Back in the MMC, click the Groups and the **Refresh** button
 #. Open the Administrator Group and notice that *LAndrews* is **no longer** in the Administrators group
-#. Create a new local user
-#. Try to add the user to the Administrators group, it will be added but instantaneously removed. 
+#. Try to add a user to the Administrators group, it will be denied by the system 
 
 
 Provisioning managed users
@@ -125,24 +124,24 @@ Creating the Managed Account - Part 1
 #. Click **Create User**
 #. Call the account **BGAdmin** (which stands for break glass admin)
 #. Click **Create**
-#. Check the **User Managed** box
+#. Toggle **User Managed** to yes
 #. Add a description: *This account is used for IT Team purposes only*
 #. In the Initial Password field, click the **Edit** text
-#. Enter an initial password of: **Delinea@2021!**
+#. Enter an initial password of: **Delinea@2022!**
 #. Confirm the password
 #. Click **Save Password**
 #. Click **Save Changes**
 
-   .. figure:: images/lab-pv-004.png
+   .. figure:: images/pm-0004.png
 
 #. Click the **Account Password** tab
 #. Click the **Password Managed** toggle switch
 #. In the *Confirm Manage Password* screen click **Confirm Manage Password**
 #. Optionally, configure the password complexity requirements 
 #. Ensure the **Log Password Before Change** option is checked. This option is very important and means that a new random password will not be set until it has been logged in Privilege Manager. This avoids the risk that a new password is created but is not available to disclose. 
-#. Click the blue, update schedule to configure and change the schedule to rotate the password every day 01:00 AM.
+#. Click the purple, update schedule to configure and change the schedule to rotate the password every day 01:00 AM.
 
-   .. figure:: images/lab-pv-005.png
+   .. figure:: images/pm-0005.png
 
 #. Click **Save**
 #. Click **Save Changes**
@@ -165,7 +164,7 @@ Testing the Managed Account
 Now that all is ready to be tested let's start testing...
 
 #. Switch to the client machine CLIENT01
-#. As the MMC is still open, refresh th Groups and see if BGAdmin is mentioned in the Administrators group. I should not be as we haven't updated the policy yet.
+#. As the MMC is still open, refresh th Groups and see if BGAdmin is mentioned in the Administrators group. It should not be as we haven't updated the policy yet.
 #. Update the policies on the client from the **Agent Utility**. The new created policy will be shown in green.
 #. Back in the MMC, click the Groups and the **Refresh** button
 #. Open the Administrator Group and notice that *BGAdmin* is in the Administrators group
@@ -182,7 +181,7 @@ Now we have seen the user in the machine in the correct group as defined in the 
 #. Switch back to SSPM
 #. Navigate to **Admin > Tools > Disclose Password**
 
-   .. figure:: images/lab-pv-008.png
+   .. figure:: images/pm-0006.png
 
 #. Click the **Select...** text
 #. Click the **Search** button
@@ -190,44 +189,15 @@ Now we have seen the user in the machine in the correct group as defined in the 
    .. note::
        As we only have one client this is easy, if there would be a lot of machine reporting into Privilege Manager, you can search on the Clinet's name, Computer Domain or OS Name.
 
-       .. figure:: images/lab-pv-010.png
+       .. figure:: images/pm-0007.png
 
 #. Click **CLIENT01**. In the page that appeared you will see the two accounts (*LAndrews* and *BGAdmin*) that are being managed by Privilege Manager
 #. Click on **View Password** to see the password of **BGAdmin**
 #. This shows the initially set password. The password rotation has not been run yet.
 
-   .. figure:: images/lab-pv-011.png
+   .. figure:: images/pm-0008.png
 
 #. Click **Close**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .. raw:: html

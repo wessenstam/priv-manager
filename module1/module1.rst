@@ -163,7 +163,7 @@ Lab 3 - Accessing Privilege Manager for the first time
      
      The first time the page is opened it may take a few minutes for the UI is shown. IIS needs some time to build and start the needed files. During the first-time an account with local admin rights on the installation server (SSPM) will need to be used for authentication. Later other local/domain accounts or authentication options can be specified
 
-#. On the **Getting Started** windows click **Close**
+#. On the **Getting Started** window, check *Do not show the Getting Started Banner* and click **Close**
 
 .. raw:: html
 
