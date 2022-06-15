@@ -39,10 +39,11 @@ Lab 15 - Creating a denylisting (blocked application) policy
 *************************************************************
 
 Before starting the lab exercise, we will disable the **Monitor Applications Run with Administrator Rights Policy** we created earlier in Module 6 as the policy set we are creating will also capture valuable discovery events. To disable this policy
+
 #. Navigate to **WINDOW COMPUTERS group > Application Policies**
 #. Search the **Monitor Applications Run with Administrator Rights Policy** and click the toggle switch so it shows **Inactive**
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0001.png
 
 We are going to use the Wizard again to create the blocking policy to not allow the use of Internet Explorer and show a message that the application is not allowed.
 
@@ -51,10 +52,10 @@ We are going to use the Wizard again to create the blocking policy to not allow 
 #. Click **Block** and click **Next Step**
 #. Click **Notify and Block** and click **Next Step**
 #. Click **Executables** and click **Next Step**
-#. Click **Existing Filter** and click **Next Step**
+#. Click **Existing Filter** 
 #. In the new screen, use the Magnifier Glass and type *Internet* and click the **Add** text in the line where you see Internet Explorer
   
-   .. figure:: images/lab-pv-003.png
+   .. figure:: images/pm-0002.png
 
 #. Click **Update**
 #. Click **Next Step**
@@ -67,25 +68,33 @@ We are going to use the Wizard again to create the blocking policy to not allow 
 #. Click **Create Policy**
 #. Activate the policy by clicking the **Inactive** toggle switch
 
-To test the policy we are going to login to the **CLIENT01** machine.
+To test the policy we are going to login to the **CLIENT** machine.
 
-#. Switch to the CLIENT01 machine
-#. Sign out the current user, by clicking on the 
+#. Switch to the CLIENT machine
+#. Sign out the current user 
 #. At the login screen, click **Other user**
 #. Use **standarduser** / *Password provide by trainer*
+
+   .. note::
+      As the installation has been updated, it will take some time before the user is logged in. It may take approx 2-5 minutes. A good time to get a drink or stretch your legs.
+
 #. Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
 #. In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
 
-   .. figure:: images/lab-pv-004.png
+   .. figure:: images/pm-0003.png
 
-#. In the Agent Utility click the **Update** button to get the latest policies. The newly created policy should be shown in green
+#. In the Agent Utility click the **View Cache** button to view the policies. The newly created policy should be shown
 
-   .. figure:: images/lab-pv-005.png
+   .. figure:: images/pm-0004.png
 
+   .. note::
+      If the ploicy is not shown, click the **Update** button to get the policy on the system.
+
+#. **Close** the *Cache Viewer*
 #. Try to open Internet Explorer by using any know method.
 #. The start of Internet Explorer should trigger the block policy and show an **Application Denied** message as shown below.
 
-   .. figure:: images/lab-pv-006.png
+   .. figure:: images/pm-0005.png
 
 #. Click **Close**
 
@@ -108,10 +117,10 @@ We are going to use the Wizard again to create the blocking policy to not allow 
 #. Click **Elevate** and click **Next Step**
 #. Click **Run Silently** and click **Next Step**
 #. Click **Executables** and click **Next Step**
-#. Click **Existing Filter** and click **Next Step**
+#. Click **Existing Filter**
 #. In the new screen, use the Magnifier Glass and type *dfrgui* and click the **Add** text in the line where you see *Defragment GUI Utility (dfrgui.exe)*
   
-   .. figure:: images/lab-pv-007.png
+   .. figure:: images/pm-0006.png
 
 #. Click **Update**
 #. Click **Next Step**
@@ -122,7 +131,6 @@ We are going to use the Wizard again to create the blocking policy to not allow 
    - **Priority:** 10
 
 #. Click **Create Policy**
-#. Activate the policy by clicking the **Inactive** toggle switch
 
 Using Policy Events to add applications to policies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -130,22 +138,22 @@ Using Policy Events to add applications to policies
 Now that we have the policy created, **don't** set the policy to Activate. We want to add another application, but we are going to do that via the Policy Events, the discovered applications.
 
 #. In the Privilege Manager UI open **Policy Events**
-#. Click on **Agent Utility.exe** to see the details on the right hand slide
+#. Click on **New Loaded Resource** a new navigation bar will open to the right. Click **View File** and click **Discover Now**
+#. Click the **Back to Policy Events**, refresjh the browser screen and click **Agent Utility.exe** and  to see the details on the right hand slide
 #. Click **Create Filter**
-#. Set *Select Platform* to **Windows** and click **OK**
-#. Set the checkbox for **Original File Name** AND **Signed By**
+#. Set the checkbox for **Original File Name**
 
-   .. figure:: images/lab-pv-008.png
+   .. figure:: images/pm-0007.png
 
 #. Click **Create and Add to Policy**
 #. In the next screen, select **Global - Elevated Executable Applications** from the dropdown box
 
-   .. figure:: images/lab-pv-009.png
+   .. figure:: images/pm-0008.png
 
 #. Click **Update Policy**
 #. This will revert back to the policy. Under **Applications Targeted** a line shows the *Agent Utility.exe* mentioned
 
-   .. figure:: images/lab-pv-010.png
+   .. figure:: images/pm-0009.png
 
 #. Under the **Conditions** section, click **Exclusions** and add the **Administrators** group. 
 #. Click **Update**
@@ -153,14 +161,14 @@ Now that we have the policy created, **don't** set the policy to Activate. We wa
 #. Under the **Actions** section click **Add Child Actions** and add **Add Administrative Rights**
 #. Click **Update**
 
-   .. figure:: images/lab-pv-012.png
+   .. figure:: images/pm-0010.png
 
    .. note::
        This ensures that child processes of this application will have the same actions applied as the parent. In some cases, it can be dangerous to elevate child processes from some applications so this setting should be used with caution. The policy set we are creating will also pass child processes back through the entire policy set to ensure every child process is checked against denylists and other policies
 
 #. Click **Show Advanced** text and enable **Continue Enforcing Polices** by clicking the toggle switch
 
-   .. figure:: images/lab-pv-011.png
+   .. figure:: images/pm-0011.png
 
 #. Click **Save Changes**
 #. Activate the policy by clicking the **Inactive** toggle switch
@@ -177,7 +185,7 @@ Testing the created policy
        - Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
        - In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
 
-       .. figure:: images/lab-pv-004.png
+       .. figure:: images/pm-0003.png
 
 #. The just created policy should be shown in green.
 #. Close the Agent Utility and reopen it. There should not be any UAC prompt as the application is allowed and "automagically" elevated
@@ -211,14 +219,14 @@ Lab 17 - Creating an installer elevation policy
 #. Click **Show Advanced** text and make sure **Continue Enforcing Polices** and **Continue Enforcing Policies for Child Processes** are toggle on
 #. The policy should look like the below (with respect to Conditions, Actions and Policy Enforcement)
    
-   .. figure:: images/lab-pv-013.png
+   .. figure:: images/pm-0012.png
 
 #. Click **Save Changes**
 
    .. note:: 
       If we left the policy in its current state and applied it, all .msi files would be elevated as we are currently elevating msiexec.exe whenever it runs. To change this behavior, we will now target the specific .msi files we want to elevate
 
-#. Open a browser and navigate to https://7-zip.org/download.html
+#. Open a new browser tab and navigate to https://7-zip.org/download.html
 #. Select and download the 64bit msi installer
 
    .. figure:: images/lab-pv-014.png
@@ -229,12 +237,10 @@ Lab 17 - Creating an installer elevation policy
 #. Click **Upload File**
 #. After the upload and the inventory ha been done, click **Go to File Details**
 
-   .. figure:: images/lab-pv-015.png
+   .. figure:: images/pm-0013.png
 
 #. You see now the details as discovered after the File Upload phase.
 #. Click **Manage Application**
-#. Leave the **Select Platform** to *Windows*
-#. Click **Ok**
 #. Select the **File Name** and click **Create Filter and Add to Policy**
 #. Select the **Global - Elevated Installers (msi)** policy
 #. Click **Update Policy**, the policy will open
@@ -254,19 +260,18 @@ Testing the created policy
        If you closed the Agent Utility, open it again by:
         
        - Navigate to **C:\\Program Files\\Thycotic\\Agents\\Agent** and double click **Agent Utility**
-       - In the UAC screen use the **thylab\\adm-training** user and corresponding password to run the application. The StandardUser is NOT an administrator on the VM
-
-       .. figure:: images/lab-pv-004.png
+       - As the *Global – Elevated Executable Applications* policy is active, there will not be an UAC message
 
 #. The newly created policy should be shown in green
 
-   .. figure:: images/lab-pv-016.png
+   .. figure:: images/pm-0014.png
 
 #. Open Chrome browser and download the same 7-Zip installer
 #. Start the installation process of the 7-Zip msi file
 #. The installation should be elevated and succeed without any UAC prompt throughout the installation process.
 #. To test another msi, download the putty msi installer from https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.76-installer.msi (or use Google to find the URL)
 #. Start the Putty installer, follow the installer and you will see the UAC prompt after a few steps. **NOT AT THE BEGINNING OF THE INSTALLATION!!!!**. As the StandardUser is not an Administrator, the UAC asks for credentials.
+#. Cancel the installation by clicking **No** in the UAC
 
    .. figure:: images/lab-pv-017.png
 

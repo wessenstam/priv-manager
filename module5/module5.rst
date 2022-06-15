@@ -67,7 +67,7 @@ Lab 15 - Creating a Blank Policy
 
 In this exercise we will create a new, blank policy so that we can explore the components that make up the policy in detail. 
 
-#. In the Privilege Manager UI navigate to **WINDOWS COMPUTER > Application Policies**
+#. In the Privilege Manager UI navigate to **WINDOWS COMPUTERS**(click on the downward pointing arrow) **> Application Policies**
 #. Click **Create Policy**
 #. Click **Skip the wizard, take me to a blank policy** at the bottom of the middle pane
 #. Provide the following as parameters for the fields:
@@ -98,7 +98,7 @@ On the right hand side of the screen:
   - Export the policy as an XML file
   - Delete
 
-  .. figure:: images/lab-pv-008.png
+  .. figure:: images/pm-0002.png
 
 Policy details section
 **********************
@@ -122,7 +122,7 @@ Policy details section
 - Priority; an integer. Privilege manager evaluates policies in a specific order based on the priority value. Policies are evaluated from low to high with 1 being the lowest priority. Policy priority is incredibly important and will be discussed, in detail as we start to create policies in subsequent exercises
 - Description; high level explanation of what the policy does and is used for
 
-.. figure:: images/lab-pv-010.png
+.. figure:: images/pm-0005.png
 
 Conditions section
 ******************
@@ -137,7 +137,7 @@ Conditions section
 - Inclusions; provide an additional filter statement that ensures the policy is only applied if **ALL** added inclusion filters are met. For example, a user context filter could be added to the inclusion filters to ensure the policy only applies if the user is a member of a specified domain group. 
 - Exclusions; provide an additional filter statement that ensures the policy is not applied if **ANY** of the added exclusion filters apply. For example, a user context filter could be added to the exclusion filters to ensure the policy does not apply if the user still has admin rights.
 
-.. figure:: images/lab-pv-010.png
+.. figure:: images/pm-0003.png
 
 Actions section
 ***************
@@ -146,10 +146,10 @@ Actions section
 - Child Actions; are things that need to be done if the process that is spawned from the first action. Example; Notepad is run with elevated rights, should it then keep those rights for the files that it opens?
 - Audit Policy Events; should the activities that are detected by the policy been fed-back into the system or not? Example; For new installation, we want to see which applications are run by users with elevated rights (UAC screen shown). The next Module will use this example and provide a step by step guide to create a policy for such a use case.
 
-.. figure:: images/lab-pv-012.png
+.. figure:: images/pm-0006.png
 
-Policy Enforcement (when clicking on the **Show Advanced** text)
-****************************************************************
+Policy Enforcement (when clicking on the **Show Advanced** text at the bottom of the page)
+******************************************************************************************
 
 Policy Enforcement settings determine how the policy is evaluated in several different ways.
 
@@ -173,7 +173,7 @@ Policy Enforcement settings determine how the policy is evaluated in several dif
 
   - This setting can be used if a policy set is causing a delay to machine boot times. It simply means that the policy will only be evaluated once all windows boot tasks have been completed. This setting is not normally required. 
 
-.. figure:: images/lab-pv-013.png
+.. figure:: images/pm-0007.png
 
 
 Policy Events
@@ -181,15 +181,14 @@ Policy Events
 
 If the policy has the **Audit Policy Events** set to active, here the events will be shown that have been triggered by the policy. You can change the time window by clicking on the (default) **Past 3 months** text and make your changes. Using the **Refresh** button you can refresh the latest data from the Database as the agents work in an A-Synchronous way with respect to sending data back to the server.
 
-.. figure:: images/lab-pv-014.png
+.. figure:: images/pm-0008.png
 
 Change History
 ^^^^^^^^^^^^^^
 
 This tab show the history of the Policy and who has done what with respect to changing the policy. Clicking an item will provide more detailed information.
 
-.. figure:: images/lab-pv-015.png
-
+.. figure:: images/pm-0009.png
 .. raw:: html
 
     <hr><CENTER>

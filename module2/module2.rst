@@ -14,7 +14,7 @@ This module will cover:
 Installing Licenses
 -------------------
 
-Before any agents can be connected to privilege manager, valid licenses need to be added. Thycotic license Client (Windows 10 etc. / MacOS). Your trainer will provide you trial licenses for use during the training. 
+Before any agents can be connected to privilege manager, valid licenses need to be added. Delinea license Client (Windows 10 etc. / MacOS). Your trainer will provide you trial licenses for use during the training. 
 
 .. note::
 
@@ -26,16 +26,16 @@ Lab 4 – Installing licenses
 #. Ensure you are logged in to Privilege Manager with the **thylab\\adm-training** account
 #. Click the **Admin** all the way to the bottom of the screen and select **Licenses**
 
-   .. figure:: images/lab-pv-001.png
+   .. figure:: images/pm-0001.png
 
 #. From the license screen you will see that there are currently no licenses added. Click the **Add License** button 
 #. Enter the license name and key fields provided by your trainer, we will be adding two, separate license keys. 
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0002.png
 
 #. Click **Add**, you will be prompted with a message "License installed successfully" click OK
 #. *Repeat* steps 4 and 5 for the second license key
-#. Your lab environment is now licensed for Windows and Mac OS client endpoints and Windows servers
+#. Your lab environment is now licensed for Windows and Mac OS client endpoints
 
 .. raw:: html
 

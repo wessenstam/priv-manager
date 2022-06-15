@@ -45,7 +45,7 @@ Lab 7 - Configuring Active Directory Integration
    - **Password:** *Provide by trainer* (after clicking the *Edit* text)
    - **Second time Password:** *Provide by trainer*
 
-   .. figure:: images/lab-pv-001.png
+   .. figure:: images/pm-0001.png
 
 #. Click **Save Password**
 #. Click **Save Changes**
@@ -67,7 +67,7 @@ Lab 7 - Configuring Active Directory Integration
 
 #. Your configuration should match the image below
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0002.png
 
 #. Click **Create**
 
@@ -77,20 +77,16 @@ Lab 8 - Running an initial AD sync
 Now that Privilege Manager has been integrated with an Active Directory instance, a synchronization task can be run. This task can also be scheduled to ensure Privilege Manager is constantly synchronized with changes that may occur within AD.
 
 #. While still being in Privilege manager's UI as **thylab\\adm-training**, as you created the new Active Directory THYLAB
-
-   .. note::
-       If you are in this configuration part of Privilege Manager, login to the SSPM as **thylab\\adm-training** open the UI at **https://sspm.thylab.local/TMS/PrivilegeManager**, log in as **thylab\\adm-training** the the *provide password by the trainer*, and in the UI **Admin > Configuration > Foreign Systems > THYLAB**
-
-#. Select the Synchronization tab
-#. In the **Import** section select all but the **Custom LDAP Query**
+#. Select the *Synchronization* tab
+#. In the **Import** section select **all but** the *Custom LDAP Query*
 #. In the **Connectivity** section, leave the default. The other option is needed in situation where Privilege Manager can not directly connect to the AD environment that you want to synchronize with.
 
-   .. figure:: images/lab-pv-003.png
+   .. figure:: images/pm-0003.png
 
 #. Click **Save Changes** and hit the **Run** button at the end of the page to start the first synchronization
 #. A new screen will open. Wait till it says in the Message section *Completed import,.......*
 
-   .. figure:: images/lab-pv-004.png
+   .. figure:: images/pm-0004.png
 
 Lab 9 - Scheduling the Schedule for the AD Synchronization
 **********************************************************
@@ -105,12 +101,12 @@ It is important that the synchronization between Privilege Manger and Active Dir
 To change the schedule of the synchronization, follow the below steps.
 
 #. In the Privilege Manager UI, on the task execution page, click the **Back to THYLAB** text in the top left corner of the middle pane
-#. Click the **Synchronization tab > Once at XX:XX:XX AM starting XXX XXX XX XXXX text**
+#. Click the **Synchronization** and click the text **Once at XX:XX:XX AM starting XXX XXX XX XXXX text**
 #. Use the following parameters for the fields:
 
    - **Begin:** On a schedule
    - **Frequency:** Daily
-   - **Starting:** <THE DAY OF THE TRAINING +1 day> - 02:00 AM - <LEAVE UTC OFF>
+   - **Starting:** *<THE DAY OF THE TRAINING +1 day>* - 02:00 AM - <LEAVE UTC OFF>
    - **Recur every:** 1 day(s)
 
    .. note::
@@ -122,12 +118,12 @@ To change the schedule of the synchronization, follow the below steps.
 
        We are going to leave them as they are. There might be situations where you may want to set these fields. A possibility could be that during a merge/consolidation or expansion of the ADs you want Privilege Manager to faster synchronize with AD.
 
-   .. figure:: images/lab-pv-005.png
+   .. figure:: images/pm-0005.png
 
 #. Click **Save** to save the new schedule
 #. Back in the Synchronization tab, click **Save Changes** to activate the new schedule which should be shown in the **Server Task Config > Schedule** section
 
-   .. figure:: images/lab-pv-006.png
+   .. figure:: images/pm-0006.png
 
 
 Lab 10 - Adding users and groups to Roles
@@ -149,28 +145,21 @@ Now that Active Directory has been synchronized, Active Directory users or group
 #. Select the **Privilege Manager Administrators** Role
 #. By default, only the local administrators group on the installation server is included in the Administrator role. 
 
-   .. figure:: images/lab-pv-007.png
+   .. figure:: images/pm-0007.png
 
 #. Click the **Add** text towards the end of the line which shows *Membership*
 #. Click **Search**
 #. Change *items per page* to **100** at the bottom of the screen
 #. Select the **Privilege Manager Administrators** group by selecting the checkbox in front of the group
 
-   .. figure:: images/lab-pv-008.png
+   .. figure:: images/pm-0008.png
 
 #. Click **Select**
 #. The *Privilege manager Administrators* group should now be the only one mentioned in the **Membership** section
 
-   .. figure:: images/lab-pv-009.png
+   .. figure:: images/pm-0009.png
 
 #. Click **Save Changes**
-
-   .. note::
-      Removing the Administrators group is **not** allowed. Trying this will lead to an error while trying to save the changes.
-
-      .. figure:: images/lab-pv-010.png
-
-
 
 
 

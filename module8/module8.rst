@@ -65,7 +65,7 @@ Creating High Level User Context Filter
 #. Click **Save Changes**
 #. The top of the filter should look roughly like the below screenshot
 
-   .. figure:: images/lab-pv-001.png
+   .. figure:: images/pm-0001.png
 
 Creating Low Level User Context Filter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -88,7 +88,7 @@ Rather than creating another user context filter from scratch, a duplicate of th
 #. Click **Save Changes**
 #. The top of the filter should look roughly like the below screenshot
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0002.png
 
 Both filters are now available to be used by policies
 
@@ -175,7 +175,7 @@ High Privilege – Elevated Installers (msi)
 
 Your policy set in the **WINDOW COMPUTERS group > Application Policies** should now match the below image when sorted by policy priority and filtered to only show enabled policies (use the Filter option left of the lowest Magnifier Glass and set **All to Active**)
 
-.. figure:: images/lab-pv-003.png
+.. figure:: images/pm-0003.png
 
 Restricted Applications
 -----------------------
@@ -229,11 +229,11 @@ Lab 20 - Creating a Restricted Applications Policy
 #. Click **Update**
 #. Make sure that the **Audit Policy Events** is enabled
 #. Click **Enable**
-#. Click **Show Advanced** text and make sure only **Continue Enforcing Policies for Child Processes** is toggled on
+#. Click **Show Advanced** text and make sure **only** *Continue Enforcing Policies for Child Processes* is toggled on
 #. Click **Save Changes**
 #. The policy should look like the below (with respect to Conditions, Actions and Policy Enforcement)
 
-   .. figure:: images/lab-pv-004.png
+   .. figure:: images/pm-0004.png
 
 #. Activate the policy by clicking **Inactive**
 
@@ -285,7 +285,7 @@ Create the UAC replacement policy
    - Require Administrator Rights Manifest Filter
    - User Access Control Consent Dialog Detected
 
-   .. figure:: images/lab-pv-005.png
+   .. figure:: images/pm-0005.png
 
 #. Click **Update**
 #. Under **Conditions** section, click **Add Inclusions** and add:
@@ -309,24 +309,24 @@ Create the UAC replacement policy
 
 #. The policy should look like the below (with respect to Conditions, Actions)
 
-   .. figure:: images/lab-pv-006.png
+   .. figure:: images/pm-0006.png
 
 #. Activate the policy by clicking **Inactive**
 
 Test the restricted application and UAC replacement policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Log onto the client machine **CLIENT01** as **Developer** / *Password provided by trainer*
-#. Start the **Agent Utility** and click **Update** (as the Developer account is part of the High Privilege User Context Polic, no UAC is shown..)
+#. Log onto the client machine **CLIENT01** as **Developer** / *Password provided by trainer*. 
+#. Start the **Agent Utility** (*C:\\Program Files\\Thycotic\\Agents\\Agent\\Agent Utility*) and click **Update** (as the Developer account is part of the High Privilege User Context Polic, no UAC is shown..)
 #. The newly created policies should be shown
 #. Download and run an executable installer of your choice (notepad ++ for example in the Example Applications), you should see a warning message, but you will be able to proceed with the elevation
 
-   .. figure:: images/lab-pv-008.png  
+   .. figure:: images/pm-0007.png  
 
-#. Right click notepad and click Run as Administrator, you should see the warning message 
-#. Right click PowerShell and click Run as Administrator, you should see the justification message, enter a reason, and proceed with the elevation. 
+#. Open the Windows menu and search for Notepad, right click Notepad and click Run as Administrator, you should see the warning message 
+#. Open the Windows menu and search for Powershell, Right click PowerShell and click Run as Administrator, you should see the justification message, enter a reason, and proceed with the elevation. 
 
-   .. figure:: images/lab-pv-009.png  
+   .. figure:: images/pm-0008.png  
 
 
 Allowlisting
@@ -346,61 +346,62 @@ Lab 21 - Creating a Trusted Installers allowlisting policy
 
 This policy is dependent on a filter which needs to be built first and then can be used in the whitlisting policy
 
-Create the needed filter
-^^^^^^^^^^^^^^^^^^^^^^^^
+..
+   Create the needed filter
+   ^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Switch to SSPM
-#. In the Privilege Manager UI, navigate to **Admin -> Filters**
-#. Click **Create Filter**
-#. In the **Platform/Location** field, select **Windows Computers Filters**
-#. In the **Type** field, select **User Context Filter**
-#. **Name** field, type **Trusted File Owners**
-#. In the **Description** field type **Filter used to target account that are trusted as owners of files**
-#. Click **Create**
-#. Click in **Settings** section in the line **Built-in Accounts** the **Add** text
-#. Search and add the following groups:
-   
-   - Administrators
-   - Domain Administrators
+   #. Switch to SSPM
+   #. In the Privilege Manager UI, navigate to **Admin -> Filters**
+   #. Click **Create Filter**
+   #. In the **Platform/Location** field, select **Windows Computers Filters**
+   #. In the **Type** field, select **User Context Filter**
+   #. **Name** field, type **Trusted File Owners**
+   #. In the **Description** field type **Filter used to target account that are trusted as owners of files**
+   #. Click **Create**
+   #. Click in **Settings** section in the line **Built-in Accounts** the **Add** text
+   #. Search and add the following groups:
 
-#. Click **Select** 
-#. Click in **Settings** section in the line **Well-known Accounts** the **Add** text
-#. Search and add the following accounts:
-   
-   - NT Authority System Account
-   - Trusted Installer
+      - Administrators
+      - Domain Administrators
 
-#. Click **Save Changes**
-#. The top of the filter should look roughly like the below screenshot
+   #. Click **Select** 
+   #. Click in **Settings** section in the line **Well-known Accounts** the **Add** text
+   #. Search and add the following accounts:
 
-   .. figure:: images/lab-pv-010.png
+      - NT Authority System Account
+      - Trusted Installer
 
-Build the allowlisting policy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   #. Click **Select** 
+   #. Click **Save Changes**
+   #. The top of the filter should look roughly like the below screenshot
+
+      .. figure:: images/pm-0009.png
+
+Build the allow listing policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Navigate to **WINDOW COMPUTERS group > Application Policies**
 #. Click **Create Policy**
 #. Click **Skip the wizard, take me to a blank policy** as we want to control all steps and options ourselves
 #. Use the following parameters for the fields shown:
 
-   - **Name:** High Privilege – allowlist
-   - **Description:** This policy allowlists all for Trusted Installers for High Privilege users 
+   - **Name:** High Privilege – allow list
+   - **Description:** This policy allow lists all for Trusted Installers for High Privilege users 
    - **Priority:** 40
 
 #. Click **Create Policy** and let's populate the needed fields so we create our policy
 #. Under **Conditions** section, click **Add Inclusions** and add:
 
-   - Trusted File Owners (the just created filter)
-
-     .. note::
-        The built-in filter *Trusted Installer File Owner Filter* is not to be used! This is the out-of-the-box version and Read Only...
+   - Trusted Installer File Owner Filter
+   - High Privilege User Context Filter
 
 #. Click **Update**
 #. Leave Actions empty as we don;t want anything to happen if this policy hits.
+#. Click the **Show Advanced** and make sure the *Continue Enforcing Policies* is **Off**
 #. Click **Save Changes**
 #. The policy should look like the below (with respect to Conditions, Actions)
 
-   .. figure:: images/lab-pv-011.png
+   .. figure:: images/pm-0010.png
 
 #. Activate the policy by clicking **Inactive**
 
@@ -409,7 +410,7 @@ Catch All Policy
 
 If we look at our overall policy set that now exists (filtered on Active only):
 
-.. figure:: images/lab-pv-012.png
+.. figure:: images/pm-0011.png
 
 The policies all contain specific application conditions. This means the above policies will only apply if those conditions are met. So, importantly, we need to consider a scenario where an application runs that does not meet any of these policies. 
 
@@ -436,8 +437,6 @@ Now we need to make some changes to the create policy
 #. Under **Conditions** section, click **Add Inclusions** and add **High Privilege User Context Filter** 
 #. Under **Conditions** section, **Exclusions** click **Edit** and remove all
 #. Click **Update**
-#. Under **Actions** section, click **Add Actions** and add **Application Warning Message Action**
-#. Click **Update**
 #. Make sure that the **Audit Policy Events** is enabled
 #. Click **Enable**
 #. Click **Save Changes**
@@ -448,7 +447,7 @@ Test the Catch-All policy
 
 #. Log onto the client machine **CLIENT01** as **Developer** / *Password provided by trainer*
 #. Open the Agent Utility and click **Update** so we get the newly create policy on the client
-#. Run notepad.exe / paint.exe / cmd.exe without elevation, thy should run seamlessly because they are owned by the Trusted Installer Account. You can see this by right clicking the application in explorer and viewing the advanced security information (notepad.exe as example):
+#. Run notepad.exe / paint.exe / cmd.exe without elevation, they should run seamlessly because they are owned by the Trusted Installer Account. You can see this by right clicking the application in explorer and viewing the advanced security information (notepad.exe as example):
 
    .. figure:: images/lab-pv-013.png
 
@@ -468,7 +467,7 @@ As we have the **Audit Policy Events** enabled let's see what that means in the 
 #. Click the **Policy Events** tab
 #. Besides putty you will also see other applications that have been opened that were not caught by other policies for the Developer user.
 
-   .. figure:: images/lab-pv-014.png
+   .. figure:: images/pm-0012.png
 
 
 Creating a Low Privilege Users policy set
@@ -515,42 +514,44 @@ The following also needs to be changed for **ALL** Low Privilege policies:
 - Activate the policy by clicking **Inactive**
 - Repeat for all Polices
 
-.. note::
-   *PRO TIP* Right click the links of the policy and open in a new tab in the browser, it saves time in switching back and forth...
 
 Testing the Low Privilege policies
 **********************************
 
 #. While still being logged in as Developer, open the Agent Utility and click **Update** so we get the newly create policy on the client
-#. Logout and log back in as **SalesUser** / *Password provided by trainer*
-#. Right click PowerShell.exe and click Run as Administrator
+#. Logout and log back in as **SalesUser** / *Password provided by trainer*. Be patient as the system needs to get things ready for the user.
+#. Open the *Windows Menu, search PowerShell and right click PowerShell* and click **Run as Administrator**
 #. You will need to submit an approval request reason and click Continue
 
-   .. figure:: images/lab-pv-015.png
+   .. figure:: images/pm-0013.png
 
    .. note::
       If two screens with respect to *Approval* are popping up, make sure that in the **Low Privilege - Restricted** and the **Low Privilege- UAC Replacement** Policies, the option **Continue Enforcing polices** is checked off
 
-#. Go back to the Privilege Manager Console, and navigate to the approvals area via **Admin > Manage Approvals**
-#. Click the Pending Approval Requests** this will show the reason the user has provided and the option to perform one-time elevation or time-based elevation
+#. The message will change into *Approval status:* **Pending**
 
-   .. figure:: images/lab-pv-016.png
+   .. figure:: images/pm-0014.png
+
+#. Go back to the Privilege Manager Console, and navigate to the approvals area via **Admin > Manage Approvals**
+#. Click the Pending Approval Request this will show the reason the user has provided and the option to perform one-time elevation or time-based elevation
+
+   .. figure:: images/pm-0016.png
 
 
 #. Click **Approve** 
 #. Keep **One Time** selected and click **Approve**
 
-   .. figure:: images/lab-pv-017.png
+   .. figure:: images/pm-0017.png
 
 #. Go back to the client machine, 
 #. The application notice window should have refreshed automatically, if not click Refresh
 
-   .. figure:: images/lab-pv-019.png
+   .. figure:: images/pm-0018.png
 
-#. Click Continue, you now have an elevated PowerShell instance 
+#. Click **Continue**, you now have an elevated PowerShell instance 
 
 .. note:: 
-   As a stretch exercise: Disable the network adapter and retry the above exercise. As there is no internet connection the user will have a challenge code generated. From the Privilege Manager console, go to Tools > Offline approvals to generate a response code. The user can enter the response code to execute or elevate an application even if they do not have a network/internet connection. 
+   As a stretch exercise: Disable the network adapter and retry the above exercise. As there is no internet connection the user will have a challenge code generated. From the Privilege Manager console, go to Admins > Tools > Offline approvals to generate a response code. The user can enter the response code to execute or elevate an application even if they do not have a network/internet connection. 
 
 
 

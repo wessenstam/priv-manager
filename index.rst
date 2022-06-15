@@ -82,12 +82,12 @@ Before You Begin
 Purpose
 -------
 
-This training and lab guide is designed to accompany a Thycotic trainer lead course. During your training course the trainer will regularly reference this guide as well as demonstrating lab exercises within a shared desktop environment and discussing common use cases and real-world scenarios.
+This training and lab guide is designed to accompany a Delinea trainer lead course. During your training course the trainer will regularly reference this guide as well as demonstrating lab exercises within a shared desktop environment and discussing common use cases and real-world scenarios.
 
 Your training pack
 ------------------
 
-Before you start this training course, ensure you have received lab details from your Thycotic trainer.
+Before you start this training course, ensure you have received lab details from your Delinea trainer.
 The Secret Server lab consists of the following machines:
 
 .. list-table::
@@ -127,6 +127,11 @@ Introduction
 Your trainer will provide a slide-based introduction to Privilege Manager, the slide deck used will
 be shared.
 
+General remark
+--------------
+
+When logging into the Client01 VM as "normal" none administrative account, please be patient as due to new updates of Windows that have been installed, lots needs to be updated in the backend... It may take 1-3 minutes per user. Also the first time you open the Privilege Manager UI it will take time to get IIS ready to serve the UI. This is only on the first time the UI is opened.
+
 Versioning
 **********
 
@@ -142,6 +147,11 @@ Versioning
      - WE 
      - 1.2
      - Updated to reflect version 11.2.x
+   * - 7th June 2022
+     - WE 
+     - 4.0
+     - Updated to reflect version 11.3.x as well as new agent and Windows updates
+  
  
 
 

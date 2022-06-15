@@ -77,9 +77,9 @@ Pre-Requisites
 Lab Exercise 1 - Connecting to the lab environment
 **************************************************
 
-In this exercise will access the Thycotic training lab environment.
+In this exercise will access the Delinea training lab environment.
 
-#. Navigate to the URL of the training lab environment provided by the Thycotic training team.
+#. Navigate to the URL of the training lab environment provided by the Delinea training team.
 #. Enter the password that has been provided by the training team
 #. You will now see all VMs in the lab. Some might be in a suspended state.
 
@@ -102,11 +102,11 @@ In this exercise will power on and connect to the training lab environment befor
 
 #. Connect to **SSPM** using **adm-training** as the account and the provided password
 #. On the desktop of the **SSPM** machine locate and open the *Installers* Directory on the desktop
-#. Within the directory, navigate to *Privilege Manager > Thycotic (or IBM) > Server*  (the installer is for both Secret Server and Privilege Manager)
-#. Run the setup file, when prompted with a windows User Account Control (UAC) dialogue click **Yes**
+#. Within the directory, navigate to *Privilege Manager > Delinea > Server*  (the installer is for both Secret Server and Privilege Manager)
+#. Run the **DelineaSetup-11.2** file, when prompted with a windows User Account Control (UAC) dialogue click **Yes**
 #. The installer can install both Privilege Manager and Secret Server in this lab we only want to install Privilege Manager so uncheck the Secret Server radio button as in the image below:
 
-   .. figure:: images/lab-pv-002.png
+   .. figure:: images/pm-0001.png
 
    .. note:: 
 
@@ -115,29 +115,35 @@ In this exercise will power on and connect to the training lab environment befor
 #. Click **Next**
 #. On the SQL Server Database screen, we can either install SQL server express or connect to an existing database. In the lab environment SQL Express is already installed so select **Connect to an existing SQL server** then click **Next**
 
-   .. figure:: images/lab-pv-003.png
+   .. figure:: images/pm-0002.png
 
 #. The installer will now perform a range of checks to ensure pre-requisites are in place. In the lab environment all requirements should be in place, click **Next**
 
-   .. figure:: images/lab-pv-005.png
+   .. figure:: images/pm-0003.png
 
-#. On the next screen we need to configure the database connection. As the SQL server is installed on the same machine, in the Server name or IP field enter: **SSPM\SQLEXPRESS** in the database name field, enter: **PrivilegeManager**
-#. On the same screen we now need to configure the authentication option that will be used to connect to the database. Although we can use SQL authentication or Windows authentication here, Thycotic recommend using Windows authentication. Select the Windows Authentication using service account radio button and click **Next**
+#. On the next screen we need to configure the database connection. As the SQL server is installed on the same machine, in the Server name or IP field enter: **SSPM\\SQLEXPRESS** in the database name field, enter: **PrivilegeManager**
+#. On the same screen we now need to configure the authentication option that will be used to connect to the database. Although we can use SQL authentication or Windows authentication here, Delinea recommend using Windows authentication. Select the Windows Authentication using service account radio button and click **Next**
 
-   .. figure:: images/lab-pv-006.png
+   .. figure:: images/pm-0004.png
 
 #. On the next screen we will be asked to configure the service account that will be used to connect to the SQL database and used to run the IIS application pools. Enter the following credentials:
-   | **username**: *thylab\\svc_PrivilegeManager* 
+
+   **username**: *thylab\\svc_PrivilegeManager* 
+  
    | **password**: *Provided by the trainer*
+
 #. To ensure the credentials are correct, click **Validate Credentials**, if they are you should see the word success. If not, check the credentials for any errors. Click **Next**
+
+   .. figure:: images/pm-0000.png
+
 #. On the next screen, options to configure an SMTP mail server are available. This feature will not be used during the training so click **Skip Email** 
 #. The next screen provides a review of configured installation options and the option to modify any options if required. Click **Install**
 
-   .. figure:: images/lab-pv-007.png
+   .. figure:: images/pm-0005.png
 
 #. The installation process may take up to 10-15 minutes.
 
-   .. figure:: images/lab-pv-009.png
+   .. figure:: images/pm-0006.png
 
    .. note:: 
        
@@ -149,27 +155,15 @@ In this exercise will power on and connect to the training lab environment befor
 Lab 3 - Accessing Privilege Manager for the first time
 ******************************************************
 
-#. While still on the **SSPM** VM, open Chrome (on your desktop and navigate to the following URL: https://sspm.thylab.local/TMS/PrivilegeManager
+#. While still on the **SSPM** VM, open Chrome (on your desktop) and navigate to the following URL: https://sspm.thylab.local/TMS/PrivilegeManager
 
    .. note::
 
      As Chrome is not yet set as the default browser, click the **Set as Default** button and make Chrome your default browser. Close the setting windows and return to Chrome to cary on with the lab.
+     
+     The first time the page is opened it may take a few minutes for the UI is shown. IIS needs some time to build and start the needed files. During the first-time an account with local admin rights on the installation server (SSPM) will need to be used for authentication. Later other local/domain accounts or authentication options can be specified
 
-#. Accept the Chrome warning via *Advanced -> Proceed to sspm.thylab.local (unsafe)*
-
-   .. note::
-
-    The first time the page is opened it may take a few minutes for the UI is shown. IIS needs some time to build and start the needed files. During the first-time an account with local admin rights on the installation server (SSPM) will need to be used for authentication. Later other local/domain accounts or authentication options can be specified
-
-#. In the sign in dialogue enter the following credentials
-   
-   - **Username**: Thylab\\adm-training
-   - **Password**: *Provided by the trainer*
-
-   .. figure:: images/lab-pv-010.png
-
-#. Click **Sign in**
-#. On the **Getting Started** windows click **Close**
+#. On the **Getting Started** window, check *Do not show the Getting Started Banner* and click **Close**
 
 .. raw:: html
 
