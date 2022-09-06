@@ -59,7 +59,7 @@ extra:
 
 nav:
   - Home: index.md
-  - Installing Secret Server: module1/module1.md
+  - Installing Privilege Manager: module1/module1.md
   - Licensing: module2/module2.md
   - Agent Installation: module3/module3.md
   - Active Directory: module4/module4.md
