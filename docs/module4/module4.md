@@ -6,7 +6,7 @@ This module will cover:
 
 1. Configuring Active Directory Integration
 2. Running initial AD Sync
-3. Scheduling teh AD Sync Task
+3. Scheduling the AD Sync Task
 4. Roles (RBAC)
 5. Adding users or groups to roles
 

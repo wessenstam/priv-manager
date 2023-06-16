@@ -278,15 +278,15 @@ When a .msi (Microsoft Installer) is executed within Windows, a separate executa
 
 21. Click **Upload File**
 
-22. After the upload and the inventory ha been done, click **Go to File Details**
+22. After the upload and the inventory has been done, click **Go to File Details**
 
     ![](images/pm-0013.png)
 
 23. You see now the details as discovered after the File Upload phase.
 
-24. Click **Manage Application**
+24. Click **Create Filter**
 
-25. Select the **File Name** and click **Create Filter and Add to Policy**
+25. Select the **File Name** and click **Create and Add to Policy**
 
 26. Select the **Global - Elevated Installers (msi)** policy
 
