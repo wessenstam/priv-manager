@@ -19,7 +19,7 @@ The Privilege Manger agent provides flexible, lightweight endpoint connectivity.
 - Local Security Solution Agent (x64):
 
 The individual agent components can be installed at the same time using the bundled executable installer (.exe) or with individual installers (.msi) for each. This can be useful in situations where, for example a customer only wants to use the local security solution agent (local user and group management) but not apply application control.
-The executable installer is designed to be run interactively by an end user and is typically used in testing, POC or lab environments. In production environments the .msi installers are normally used as they provide a more flexible way to centrally deploy the agent in several ways:
+The executable installer is designed to be run interactively by an end user and is typically used in testing, POV or lab environments. In production environments the .msi installers are normally used as they provide a more flexible way to centrally deploy the agent in several ways:
 
 - software management systems
 - GPO

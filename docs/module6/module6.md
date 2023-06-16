@@ -162,7 +162,7 @@ There are two ways that *New Loaded Resources* can be discovered, either by runn
 
 ### Lab 14 - Increasing resource discovery frequency
 
-In testing, POC, and pre-production environments it can be advantageous if event discovery is occurring quickly so that the information provided can be used to build policies in a timely fashion.
+In testing, POV, and pre-production environments it can be advantageous if event discovery is occurring quickly so that the information provided can be used to build policies in a timely fashion.
 | In this exercise we will create a copy of the built-in policy that is used to trigger the resource discovery task so that the schedule can be changed. The schedule cannot be changed on the default policy as it is read-only.
 
 01. In the Privilege Manager console, navigate to **WINDOWS COMPUTERS > Scheduled Jobs**
